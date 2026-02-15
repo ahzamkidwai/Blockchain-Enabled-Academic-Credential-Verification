@@ -1,0 +1,52 @@
+# --- Compiler & Build Artifacts ---
+# Foundry's output and cache directories
+out/
+cache/
+artifacts/
+
+# --- Dependencies ---
+# Foundry uses git submodules in /lib by default. 
+# We don't ignore /lib because the submodules need to be tracked,
+# but we do ignore node_modules if you use npm packages.
+node_modules/
+
+# --- Deployment Logs (Refined) ---
+# Your specific broadcast rules:
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+# Generally, developers also ignore the sensitive transaction data:
+/broadcast/*/run-latest.json
+/broadcast/*/run-*.json
+
+# --- Testing & Coverage ---
+# Forge gas snapshots and coverage reports
+.gas-snapshot
+coverage/
+lcov.info
+
+# --- Security & Environment ---
+# Never commit private keys or API keys
+.env
+.env.local
+.env.secret
+# Keep the example file tracked!
+!.env.example
+
+# --- Documentation ---
+# From your original file
+docs/
+
+# --- IDE & System Files ---
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# IntelliJ/WebStorm
+.idea/
+
+# Mac/Windows system files
+.DS_Store
+Thumbs.db
+*.swp
