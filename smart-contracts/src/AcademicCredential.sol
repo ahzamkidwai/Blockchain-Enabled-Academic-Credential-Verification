@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-import "./interfaces/IAcademicCredential.sol";
-import "./libraries/Errors.sol";
+import {IAcademicCredential} from "./interfaces/IAcademicCredential.sol";
+import {Errors} from "./libraries/Errors.sol";
 
 /// @title Academic Credential Soulbound NFT
 /// @author Senior Solidity Developer
@@ -21,6 +21,7 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     struct Credential {
         string ipfsHash;
         bool revoked;
+        address issuer;
     }
 
     /// @notice Mapping from tokenId to credential details
@@ -76,13 +77,17 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
             revert Errors.NotAuthorizedInstitution();
         }
 
-        tokenId = ++_tokenIdCounter;
+        unchecked {
+            _tokenIdCounter++;
+            tokenId = _tokenIdCounter;
+        }
 
         _safeMint(student, tokenId);
 
         _credentials[tokenId] = Credential({
             ipfsHash: ipfsHash,
-            revoked: false
+            revoked: false,
+            issuer: msg.sender
         });
 
         emit CredentialIssued(tokenId, student, msg.sender, ipfsHash);
@@ -100,6 +105,11 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         }
 
         if (!_authorizedInstitutions[msg.sender]) {
+            revert Errors.NotAuthorizedInstitution();
+        }
+
+        // Only the issuing institution may revoke its credential
+        if (_credentials[tokenId].issuer != msg.sender) {
             revert Errors.NotAuthorizedInstitution();
         }
 
@@ -142,5 +152,25 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         }
 
         return from;
+    }
+
+    // / @notice Disable approvals for soulbound tokens
+    // function approve(address to, uint256 tokenId) public virtual override {
+    //     revert Errors.SoulboundToken();
+    // }
+    function approve(address, uint256) public virtual override {
+        revert Errors.SoulboundToken();
+    }
+
+    /// @notice Disable operator approvals for soulbound tokens
+    // function setApprovalForAll(
+    //     address operator,
+    //     bool approved
+    // ) public virtual override {
+    //     revert Errors.SoulboundToken();
+    // }
+
+    function setApprovalForAll(address, bool) public virtual override {
+        revert Errors.SoulboundToken();
     }
 }
