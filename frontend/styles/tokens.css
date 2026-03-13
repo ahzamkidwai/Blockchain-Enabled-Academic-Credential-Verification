@@ -1,0 +1,141 @@
+/*
+ * ============================================================
+ * DESIGN TOKENS — Academic Credential Platform
+ * ============================================================
+ * All color, spacing, and visual variables live here.
+ * Import this in globals.css via @import.
+ * To retheme: only edit this file.
+ * ============================================================
+ */
+
+:root {
+  /* ── Radius ── */
+  --radius: 0.75rem;
+
+  /* ── Brand Palette (Indigo-Teal hybrid) ── */
+  --brand-50:  215 100% 97%;
+  --brand-100: 214 95%  93%;
+  --brand-200: 213 97%  87%;
+  --brand-300: 212 96%  78%;
+  --brand-400: 213 94%  68%;
+  --brand-500: 217 91%  60%;
+  --brand-600: 221 83%  53%;
+  --brand-700: 224 76%  48%;
+  --brand-800: 226 71%  40%;
+  --brand-900: 224 64%  33%;
+
+  /* ── Semantic Tokens: Light Mode ── */
+  --background:           220 20%  98%;
+  --foreground:           224 40%  10%;
+
+  --card:                 0   0%   100%;
+  --card-foreground:      224 40%  10%;
+
+  --popover:              0   0%   100%;
+  --popover-foreground:   224 40%  10%;
+
+  --primary:              221 83%  53%;       /* brand-600 */
+  --primary-foreground:   0   0%   100%;
+
+  --secondary:            215 28%  94%;
+  --secondary-foreground: 224 40%  20%;
+
+  --muted:                215 20%  92%;
+  --muted-foreground:     215 16%  47%;
+
+  --accent:               171 77%  44%;       /* teal accent */
+  --accent-foreground:    0   0%   100%;
+
+  --destructive:          0   84%  60%;
+  --destructive-foreground: 0 0%  100%;
+
+  --success:              142 71%  45%;
+  --success-foreground:   0   0%   100%;
+
+  --warning:              38  92%  50%;
+  --warning-foreground:   0   0%   100%;
+
+  --border:               215 20%  88%;
+  --input:                215 20%  88%;
+  --ring:                 221 83%  53%;
+
+  /* ── Decorative ── */
+  --grid-pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%234f67ff15' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E");
+  --gradient-mesh: radial-gradient(at 40% 20%, hsl(217 91% 60% / 0.12) 0px, transparent 50%),
+                   radial-gradient(at 80% 0%, hsl(171 77% 44% / 0.10) 0px, transparent 50%),
+                   radial-gradient(at 0% 50%, hsl(221 83% 53% / 0.08) 0px, transparent 50%);
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 1px 2px 0 hsl(224 40% 10% / 0.05);
+  --shadow-md:  0 4px 6px -1px hsl(224 40% 10% / 0.07), 0 2px 4px -1px hsl(224 40% 10% / 0.04);
+  --shadow-lg:  0 10px 15px -3px hsl(224 40% 10% / 0.08), 0 4px 6px -2px hsl(224 40% 10% / 0.04);
+  --shadow-xl:  0 20px 25px -5px hsl(224 40% 10% / 0.08), 0 10px 10px -5px hsl(224 40% 10% / 0.03);
+  --shadow-glow: 0 0 0 3px hsl(var(--primary) / 0.20);
+
+  /* ── Status Colors ── */
+  --status-active:    142 71% 45%;
+  --status-revoked:   0   84% 60%;
+  --status-suspended: 38  92% 50%;
+  --status-expired:   215 16% 47%;
+
+  /* ── Fonts ── */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:    "DM Sans", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* ── Dark Mode Overrides ── */
+.dark {
+  --background:           222 47%  9%;
+  --foreground:           213 31%  91%;
+
+  --card:                 222 47%  12%;
+  --card-foreground:      213 31%  91%;
+
+  --popover:              222 47%  11%;
+  --popover-foreground:   213 31%  91%;
+
+  --primary:              213 94%  68%;       /* brand-400 — lighter for dark bg */
+  --primary-foreground:   222 47%  9%;
+
+  --secondary:            222 30%  18%;
+  --secondary-foreground: 213 20%  80%;
+
+  --muted:                222 30%  16%;
+  --muted-foreground:     215 20%  55%;
+
+  --accent:               171 60%  55%;
+  --accent-foreground:    222 47%  9%;
+
+  --destructive:          0   63%  50%;
+  --destructive-foreground: 213 31% 91%;
+
+  --success:              142 60%  40%;
+  --success-foreground:   213 31%  91%;
+
+  --warning:              38  85%  55%;
+  --warning-foreground:   222 47%  9%;
+
+  --border:               222 30%  20%;
+  --input:                222 30%  20%;
+  --ring:                 213 94%  68%;
+
+  /* ── Decorative (dark) ── */
+  --grid-pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%235b8fff18' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E");
+  --gradient-mesh: radial-gradient(at 40% 20%, hsl(213 94% 68% / 0.15) 0px, transparent 50%),
+                   radial-gradient(at 80% 0%, hsl(171 60% 55% / 0.12) 0px, transparent 50%),
+                   radial-gradient(at 0% 50%, hsl(221 83% 53% / 0.10) 0px, transparent 50%);
+
+  /* ── Shadows (dark) ── */
+  --shadow-sm:  0 1px 2px 0 hsl(0 0% 0% / 0.20);
+  --shadow-md:  0 4px 6px -1px hsl(0 0% 0% / 0.25), 0 2px 4px -1px hsl(0 0% 0% / 0.15);
+  --shadow-lg:  0 10px 15px -3px hsl(0 0% 0% / 0.30), 0 4px 6px -2px hsl(0 0% 0% / 0.20);
+  --shadow-xl:  0 20px 25px -5px hsl(0 0% 0% / 0.35), 0 10px 10px -5px hsl(0 0% 0% / 0.25);
+  --shadow-glow: 0 0 0 3px hsl(var(--primary) / 0.25);
+
+  /* ── Status Colors (dark) ── */
+  --status-active:    142 55% 55%;
+  --status-revoked:   0   70% 60%;
+  --status-suspended: 38  80% 60%;
+  --status-expired:   215 20% 55%;
+}

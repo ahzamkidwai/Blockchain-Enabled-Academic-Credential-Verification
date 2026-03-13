@@ -1,0 +1,2285 @@
+[00:00:04.495] Server  LOG     ✓ Ready in 2.7s
+[00:00:30.615] Server  LOG     ○ Compiling / ...
+[00:01:47.149] Server  ERROR   ⨯ ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+
+
+./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+
+[00:01:50.491] Server  LOG     ○ Compiling /_error ...
+[00:02:05.035] Browser ERROR   uncaughtError: Error: ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:02:27.505] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:02:27.737] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:02:27.738] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:02:27.783] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:02:27.871] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:02:27.871] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:02:27.871] Browser ERROR   unhandledRejection: i: Failed to connect to MetaMask
+[00:02:30.471] Server  LOG     ✓ Finished writing to filesystem cache in 26.3s
+[00:02:40.167] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:02:40.167] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:02:40.167] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:02:59.159] Server  LOG     ✓ Finished filesystem cache database compaction in 35.3s
+[00:02:59.370] Server  LOG     ✓ Finished writing to filesystem cache in 32.5s
+[00:04:52.924] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:52.925] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:04:52.925] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:00.931] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:00.931] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:00.931] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:01.696] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:01.697] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:01.697] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:12.915] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:12.915] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:12.915] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:14.917] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:14.917] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:14.917] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:17.913] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:17.913] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:17.913] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:17.913] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:17.913] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:17.913] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:18.912] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:18.912] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:18.912] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:19.911] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:19.911] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:05:19.911] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:52.908] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:06:52.908] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:52.909] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:53.914] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:06:53.914] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:53.914] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:53.914] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:06:53.914] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:53.914] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:56.912] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:06:56.912] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:06:56.912] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:03.554] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:07:03.554] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:03.554] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:09.908] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:07:09.908] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:09.908] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:23.919] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:07:23.919] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:23.919] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:23.919] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:07:23.919] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:23.919] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:53.910] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:07:53.910] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-client] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:07:53.910] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts:4:1
+Export CHAIN_NAMES doesn't exist in target module
+  2 | import { useReadContract } from "wagmi";
+  3 | import { useAccount, useBalance, useChainId } from "wagmi";
+> 4 | import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export function useTotalCredentials() {
+  7 |   const { data, isLoading, refetch } = useReadContract({
+
+The export CHAIN_NAMES was not found in module [project]/OneDrive/Documents/FakeAcademicCertificateDApp/frontend/lib/contract.ts [app-ssr] (ecmascript).
+Did you mean to import CONTRACT_ADDRESS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/StatsBar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/hooks/useContractStats.ts [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/WalletConnect.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Client Component SSR]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/components/Navbar.tsx [Server Component]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+[00:08:21.191] Server  ERROR   ⨯ ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:21.904] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:53.914] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:30.910] Browser ERROR   ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css:1:2
+Module not found: Can't resolve './tokens.css'
+> 1 | @import "./tokens.css";
+    |  ^
+  2 | @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap");
+  3 |
+  4 | *, ::before, ::after{
+
+Import trace:
+  Client Component Browser:
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/globals.css [Client Component Browser]
+    ./OneDrive/Documents/FakeAcademicCertificateDApp/frontend/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:11:22.205] Server  LOG     ✓ Compiled in 5s
+[00:11:33.144] Server  WARN    Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+[00:11:33.258] Server  ERROR   (node:25452) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[00:11:34.426] Server  WARN    [Reown Config] Failed to fetch remote project configuration. Using local/default values. Error: HTTP status code: 403
+[00:11:37.912] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <z attribute="class" defaultTheme="system" enableSystem={true}>
+      <O attribute="class" defaultTheme="system" enableSystem={true}>
+        <script>
+        <WagmiProvider config={{chains:[...], ...}}>
+          <Hydrate config={{chains:[...], ...}}>
+            <QueryClientProvider client={{}}>
+              <div className="min-h-scre...">
+                <Navbar>
+                  <header className="sticky top...">
+                    <div className="mx-auto fl...">
+                      <LinkComponent>
+                      <nav>
+                      <div className="flex items...">
+                        <button>
+                        <WalletConnect>
+                          <div className="relative">
+                            <button
+                              onClick={function onClick}
++                             className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 tex..."
+-                             className="inline-flex items-center justify-center gap-2 rounded-lg font-body font-mediu..."
+-                             disabled=""
+                            >
++                             <span className="h-2 w-2 rounded-full bg-success animate-pulse-slow">
+-                             <svg
+-                               xmlns="http://www.w3.org/2000/svg"
+-                               width="24"
+-                               height="24"
+-                               viewBox="0 0 24 24"
+-                               fill="none"
+-                               stroke="currentColor"
+-                               stroke-width="2"
+-                               stroke-linecap="round"
+-                               stroke-linejoin="round"
+-                               className="lucide lucide-loader-circle h-4 w-4 animate-spin"
+-                             >
+                              ...
+                    ...
+                ...
+
+[00:11:38.914] Browser WARN    Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+[00:11:38.914] Browser WARN    [Reown Config] Failed to fetch remote project configuration. Using local/default values. {}
+[00:11:45.905] Browser ERROR   unhandledRejection: i: Failed to connect to MetaMask
+[00:12:19.453] Server  LOG     ✓ Compiled in 1989ms
+[00:12:20.122] Server  WARN    WalletConnect Core is already initialized. This is probably a mistake and can lead to unexpected behavior. Init() was called 2 times.
+[00:12:20.509] Server  WARN    Multiple versions of Lit loaded. Loading multiple versions is not recommended. See https://lit.dev/msg/multiple-versions for more information.
+[00:12:20.958] Server  WARN    [Reown Config] Failed to fetch remote project configuration. Using local/default values. Error: HTTP status code: 403
+[00:12:22.490] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <z attribute="class" defaultTheme="system" enableSystem={true}>
+      <O attribute="class" defaultTheme="system" enableSystem={true}>
+        <script>
+        <WagmiProvider config={{chains:[...], ...}}>
+          <Hydrate config={{chains:[...], ...}}>
+            <QueryClientProvider client={{}}>
+              <div className="min-h-scre...">
+                <Navbar>
+                  <header className="sticky top...">
+                    <div className="mx-auto fl...">
+                      <LinkComponent>
+                      <nav>
+                      <div className="flex items...">
+                        <button>
+                        <WalletConnect>
+                          <div className="relative">
+                            <button
+                              onClick={function onClick}
++                             className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 tex..."
+-                             className="inline-flex items-center justify-center gap-2 rounded-lg font-body font-mediu..."
+-                             disabled=""
+                            >
++                             <span className="h-2 w-2 rounded-full bg-success animate-pulse-slow">
+-                             <svg
+-                               xmlns="http://www.w3.org/2000/svg"
+-                               width="24"
+-                               height="24"
+-                               viewBox="0 0 24 24"
+-                               fill="none"
+-                               stroke="currentColor"
+-                               stroke-width="2"
+-                               stroke-linecap="round"
+-                               stroke-linejoin="round"
+-                               className="lucide lucide-loader-circle h-4 w-4 animate-spin"
+-                             >
+                              ...
+                    ...
+                ...
+
+[00:12:27.932] Browser WARN    Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+[00:12:27.932] Browser WARN    [Reown Config] Failed to fetch remote project configuration. Using local/default values. {}
+[00:12:32.912] Browser ERROR   unhandledRejection: i: Failed to connect to MetaMask
+[00:12:51.437] Server  LOG     ○ Compiling /dashboard ...
+[00:13:08.314] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:13:33.219] Server  LOG     ✓ Finished writing to filesystem cache in 22.4s
