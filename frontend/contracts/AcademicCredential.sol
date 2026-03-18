@@ -20,18 +20,22 @@ contract AcademicCredential is AccessControl {
 
     Counters.Counter private _tokenIds;
 
-    enum CredentialStatus { Active, Revoked, Suspended }
+    enum CredentialStatus {
+        Active,
+        Revoked,
+        Suspended
+    }
 
     struct Credential {
         uint256 tokenId;
         address student;
         address issuer;
-        string ipfsCID;          // Encrypted credential data on IPFS
-        bytes32 credentialHash;  // SHA-256 hash of credential content
-        string credentialType;   // "Bachelor", "Master", "PhD", "Certificate", etc.
+        string ipfsCID; // Encrypted credential data on IPFS
+        bytes32 credentialHash; // SHA-256 hash of credential content
+        string credentialType; // "Bachelor", "Master", "PhD", "Certificate", etc.
         string institutionName;
         uint256 issuedAt;
-        uint256 expiresAt;       // 0 = no expiry
+        uint256 expiresAt; // 0 = no expiry
         CredentialStatus status;
         string revocationReason;
     }
@@ -110,7 +114,9 @@ contract AcademicCredential is AccessControl {
         emit InstitutionRegistered(issuerAddress, name, country);
     }
 
-    function deactivateInstitution(address issuerAddress) external onlyRole(ADMIN_ROLE) {
+    function deactivateInstitution(
+        address issuerAddress
+    ) external onlyRole(ADMIN_ROLE) {
         institutions[issuerAddress].isActive = false;
         _revokeRole(ISSUER_ROLE, issuerAddress);
     }
@@ -127,11 +133,11 @@ contract AcademicCredential is AccessControl {
         require(student != address(0), "Invalid student address");
         require(bytes(ipfsCID).length > 0, "IPFS CID required");
         require(credentialHash != bytes32(0), "Credential hash required");
-        require(_hashToTokenId[credentialHash] == 0, "Credential already exists");
         require(
-            institutions[msg.sender].isActive,
-            "Institution not active"
+            _hashToTokenId[credentialHash] == 0,
+            "Credential already exists"
         );
+        require(institutions[msg.sender].isActive, "Institution not active");
 
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
@@ -219,45 +225,42 @@ contract AcademicCredential is AccessControl {
 
     // ─── View Functions ───────────────────────────────────────────────────────
 
-    function getCredential(uint256 tokenId)
-        external
-        view
-        returns (Credential memory)
-    {
-        require(_credentials[tokenId].tokenId != 0, "Credential does not exist");
+    function getCredential(
+        uint256 tokenId
+    ) external view returns (Credential memory) {
+        require(
+            _credentials[tokenId].tokenId != 0,
+            "Credential does not exist"
+        );
         return _credentials[tokenId];
     }
 
-    function verifyCredentialByHash(bytes32 credentialHash)
-        external
-        view
-        returns (bool isValid, Credential memory credential)
-    {
+    function verifyCredentialByHash(
+        bytes32 credentialHash
+    ) external view returns (bool isValid, Credential memory credential) {
         uint256 tokenId = _hashToTokenId[credentialHash];
         if (tokenId == 0) {
             return (false, credential);
         }
         credential = _credentials[tokenId];
-        isValid = (
-            credential.status == CredentialStatus.Active &&
-            (credential.expiresAt == 0 || credential.expiresAt > block.timestamp)
-        );
+        isValid = (credential.status == CredentialStatus.Active &&
+            (credential.expiresAt == 0 ||
+                credential.expiresAt > block.timestamp));
     }
 
-    function getStudentCredentials(address student)
-        external
-        view
-        returns (uint256[] memory)
-    {
+    function getStudentCredentials(
+        address student
+    ) external view returns (uint256[] memory) {
         return _studentCredentials[student];
     }
 
-    function getCredentialStatus(uint256 tokenId)
-        external
-        view
-        returns (CredentialStatus)
-    {
-        require(_credentials[tokenId].tokenId != 0, "Credential does not exist");
+    function getCredentialStatus(
+        uint256 tokenId
+    ) external view returns (CredentialStatus) {
+        require(
+            _credentials[tokenId].tokenId != 0,
+            "Credential does not exist"
+        );
         return _credentials[tokenId].status;
     }
 
@@ -265,11 +268,9 @@ contract AcademicCredential is AccessControl {
         return _tokenIds.current();
     }
 
-    function getTokenIdByHash(bytes32 credentialHash)
-        external
-        view
-        returns (uint256)
-    {
+    function getTokenIdByHash(
+        bytes32 credentialHash
+    ) external view returns (uint256) {
         return _hashToTokenId[credentialHash];
     }
 

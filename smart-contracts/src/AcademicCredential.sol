@@ -7,35 +7,20 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./interfaces/IAcademicCredential.sol";
 import "./libraries/Errors.sol";
 
-/// @title Academic Credential Soulbound NFT
-/// @author Senior Solidity Developer
-/// @notice ERC721-based non-transferable NFT for academic credential verification
 contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
-    /// @notice Counter for token IDs
     uint256 private _tokenIdCounter;
 
-    /// @notice Mapping of authorized institutions
     mapping(address => bool) private _authorizedInstitutions;
 
-    /// @notice Structure storing credential metadata
     struct Credential {
         string ipfsHash;
         bool revoked;
         address issuer;
     }
 
-    /// @notice Mapping from tokenId to credential details
     mapping(uint256 => Credential) private _credentials;
 
-    /// @notice Constructor sets NFT name and symbol
-    constructor() ERC721("AcademicCredential", "ACRED") Ownable(msg.sender) {}
-
-    // =============================================================
-    //                      AUTHORIZATION
-    // =============================================================
-
-    /// @notice Authorize an institution to issue credentials
-    /// @dev Only contract owner can call
+    // authorize an institution
     function authorizeInstitution(address institution) external onlyOwner {
         if (_authorizedInstitutions[institution]) {
             revert Errors.AlreadyAuthorized();
@@ -44,8 +29,7 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         _authorizedInstitutions[institution] = true;
     }
 
-    /// @notice Remove an institution's authorization
-    /// @dev Only contract owner can call
+    // remove institution authorization
     function removeInstitution(address institution) external onlyOwner {
         if (!_authorizedInstitutions[institution]) {
             revert Errors.NotAuthorized();
@@ -54,21 +38,14 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         _authorizedInstitutions[institution] = false;
     }
 
-    /// @notice Returns whether an institution is authorized
+    // check if institution is authorized
     function isAuthorizedInstitution(
         address institution
     ) external view returns (bool) {
         return _authorizedInstitutions[institution];
     }
 
-    // =============================================================
-    //                      ISSUE CREDENTIAL
-    // =============================================================
-
-    /// @notice Issue a credential NFT to a student
-    /// @param student Address of credential recipient
-    /// @param ipfsHash IPFS CID containing credential metadata
-    /// @return tokenId Newly minted credential ID
+    // issue credential NFT to student
     function issueCredential(
         address student,
         string calldata ipfsHash
@@ -93,12 +70,7 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         emit CredentialIssued(tokenId, student, msg.sender, ipfsHash);
     }
 
-    // =============================================================
-    //                      REVOKE CREDENTIAL
-    // =============================================================
-
-    /// @notice Revoke an existing credential
-    /// @dev Only issuing institutions can revoke
+    // revoke credential
     function revokeCredential(uint256 tokenId) external {
         if (_ownerOf(tokenId) == address(0)) {
             revert Errors.TokenDoesNotExist();
@@ -108,7 +80,6 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
             revert Errors.NotAuthorizedInstitution();
         }
 
-        // Only the issuing institution may revoke its credential
         if (_credentials[tokenId].issuer != msg.sender) {
             revert Errors.NotAuthorizedInstitution();
         }
@@ -118,11 +89,7 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         emit CredentialRevoked(tokenId);
     }
 
-    // =============================================================
-    //                      GETTERS
-    // =============================================================
-
-    /// @notice Returns credential metadata
+    // get credential data
     function getCredential(
         uint256 tokenId
     ) external view returns (string memory ipfsHash, bool revoked) {
@@ -134,11 +101,7 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         return (cred.ipfsHash, cred.revoked);
     }
 
-    // =============================================================
-    //                      SOULBOUND LOGIC
-    // =============================================================
-
-    /// @notice Override transfer logic to prevent transfers
+    // prevent token transfer (soulbound)
     function _update(
         address to,
         uint256 tokenId,
@@ -146,7 +109,6 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     ) internal override returns (address) {
         address from = super._update(to, tokenId, auth);
 
-        // If not minting (from != address(0)), block transfer
         if (from != address(0) && to != address(0)) {
             revert Errors.SoulboundToken();
         }
@@ -154,13 +116,16 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         return from;
     }
 
-    /// @notice Disable approvals for soulbound tokens
+    // disable approve
     function approve(address to, uint256 tokenId) public virtual override {
         revert Errors.SoulboundToken();
     }
 
-    /// @notice Disable operator approvals for soulbound tokens
-    function setApprovalForAll(address operator, bool approved) public virtual override {
+    // disable operator approval
+    function setApprovalForAll(
+        address operator,
+        bool approved
+    ) public virtual override {
         revert Errors.SoulboundToken();
     }
 }
