@@ -1,14 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-import "./interfaces/IAcademicCredential.sol";
-import "./libraries/Errors.sol";
+import {IAcademicCredential} from "./interfaces/IAcademicCredential.sol";
+import {Errors} from "./libraries/Errors.sol";
+
 
 contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     uint256 private _tokenIdCounter;
+
+    constructor() ERC721("AcademicCredential", "ACRED") {}
 
     mapping(address => bool) private _authorizedInstitutions;
 
@@ -117,14 +120,14 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     }
 
     // disable approve
-    function approve(address to, uint256 tokenId) public virtual override {
+    function approve(address /*to*/, uint256 /*tokenId*/) public virtual override {
         revert Errors.SoulboundToken();
     }
 
     // disable operator approval
     function setApprovalForAll(
-        address operator,
-        bool approved
+        address /*operator*/,
+        bool /*approved*/
     ) public virtual override {
         revert Errors.SoulboundToken();
     }

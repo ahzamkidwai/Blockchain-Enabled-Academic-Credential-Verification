@@ -1,52 +1,73 @@
 # --- Compiler & Build Artifacts ---
-# Foundry's output and cache directories
 out/
 cache/
 artifacts/
+build/
 
 # --- Dependencies ---
-# Foundry uses git submodules in /lib by default. 
-# We don't ignore /lib because the submodules need to be tracked,
-# but we do ignore node_modules if you use npm packages.
+# Foundry uses git submodules in /lib (keep tracked)
 node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
 
-# --- Deployment Logs (Refined) ---
-# Your specific broadcast rules:
-!/broadcast
+# --- Foundry Specific ---
+# Broadcast & script outputs
+broadcast/
+!/broadcast/**/README.md
+
+# Ignore local chain & dry runs
 /broadcast/*/31337/
 /broadcast/**/dry-run/
-# Generally, developers also ignore the sensitive transaction data:
+
+# Ignore sensitive or noisy tx data
 /broadcast/*/run-latest.json
 /broadcast/*/run-*.json
 
 # --- Testing & Coverage ---
-# Forge gas snapshots and coverage reports
 .gas-snapshot
 coverage/
 lcov.info
 
+# Forge traces (optional, uncomment if generated)
+# traces/
+
 # --- Security & Environment ---
-# Never commit private keys or API keys
 .env
-.env.local
-.env.secret
-# Keep the example file tracked!
+.env.*
 !.env.example
 
+# Keystore / private keys (extra safety)
+*.key
+*.pem
+*.p12
+*.keystore
+
+# --- Logs ---
+*.log
+
 # --- Documentation ---
-# From your original file
 docs/
 
-# --- IDE & System Files ---
-# VS Code
-.vscode/
+# --- IDE & Editor ---
+.vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 
-# IntelliJ/WebStorm
 .idea/
 
-# Mac/Windows system files
+# Vim
+*.swp
+*.swo
+
+# --- OS Files ---
 .DS_Store
 Thumbs.db
-*.swp
+
+# --- Misc ---
+# Temporary files
+tmp/
+temp/
+
+# Cache
+*.cache
