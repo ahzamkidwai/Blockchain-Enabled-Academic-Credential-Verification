@@ -1,14 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-/// @title Custom Errors Library
-/// @notice Contains custom error definitions to save gas and improve clarity
+/// @title Custom Errors for Academic Credential System
 library Errors {
-    error NotOwner();
-    error NotAuthorizedInstitution();
     error AlreadyAuthorized();
     error NotAuthorized();
+    error NotAuthorizedInstitution();
     error TokenDoesNotExist();
-    error CredentialRevoked();
     error SoulboundToken();
+    error CredentialAlreadyIssued();
 }
