@@ -155,12 +155,18 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     }
 
     /// @notice Disable approvals for soulbound tokens
-    function approve(address to, uint256 tokenId) public virtual override {
+    function approve(
+        address /*to*/,
+        uint256 /*tokenId*/
+    ) public virtual override {
         revert Errors.SoulboundToken();
     }
 
     /// @notice Disable operator approvals for soulbound tokens
-    function setApprovalForAll(address operator, bool approved) public virtual override {
+    function setApprovalForAll(
+        address /*operator*/,
+        bool /*approved*/
+    ) public virtual override {
         revert Errors.SoulboundToken();
     }
 }
