@@ -34,7 +34,8 @@ export function ConnectWalletGate({ children }: Props) {
     );
   }
 
-  const supportedChainIds = SUPPORTED_CHAINS.map((c) => c.id);
+  const supportedChainIds: number[] = SUPPORTED_CHAINS.map((c) => c.id);
+  console.log("Chain IDs are : " + chainId + " and supported chain IDs are " + supportedChainIds);
   if (chainId && !supportedChainIds.includes(chainId)) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 text-center px-4">
@@ -46,7 +47,7 @@ export function ConnectWalletGate({ children }: Props) {
             Wrong Network
           </h2>
           <AlertBox variant="warning" title="Unsupported Network">
-            Please switch to Sepolia Testnet, Polygon, or Polygon Amoy in your wallet.
+            Please switch to Anvil (Local), Sepolia, Polygon, or Polygon Amoy.
           </AlertBox>
         </div>
       </div>
