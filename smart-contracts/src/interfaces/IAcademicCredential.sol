@@ -14,6 +14,12 @@ interface IAcademicCredential {
     /// @notice Emitted when a credential is revoked
     event CredentialRevoked(uint256 indexed tokenId);
 
+    /// @notice Emitted when an institution is authorized
+    event InstitutionAuthorized(address indexed institution);
+
+    /// @notice Emitted when an institution is removed
+    event InstitutionRemoved(address indexed institution);
+
     function issueCredential(
         address student,
         string calldata ipfsHash

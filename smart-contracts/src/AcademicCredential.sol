@@ -72,7 +72,7 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     function isAuthorizedInstitution(
         address institution
     ) external view returns (bool) {
-        return _authorizedInstitations[institution];
+        return _authorizedInstitutions[institution];
     }
 
     /// =============================================================
