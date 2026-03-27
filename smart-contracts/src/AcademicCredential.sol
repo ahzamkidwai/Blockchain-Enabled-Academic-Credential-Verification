@@ -85,7 +85,7 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         address student,
         string calldata ipfsHash,
         bytes32 fileHash
-    ) external returns (uint256 tokenId) {
+    ) external override returns (uint256 tokenId) {
         /// Validate institution
         if (!_authorizedInstitutions[msg.sender]) {
             revert Errors.NotAuthorizedInstitution();
@@ -141,32 +141,14 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     /// =============================================================
 
     /// @notice Get credential by tokenId
-    function getCredentialByTokenId(
+    function getCredential(
         uint256 tokenId
-    )
-        external
-        view
-        returns (
-            string memory ipfsHash,
-            bytes32 fileHash,
-            address issuer,
-            address student,
-            bool revoked
-        )
-    {
+    ) external view override returns (string memory ipfsHash, bool revoked) {
         if (_ownerOf(tokenId) == address(0)) {
             revert Errors.TokenDoesNotExist();
         }
-
         Credential memory cred = _credentials[tokenId];
-
-        return (
-            cred.ipfsHash,
-            cred.fileHash,
-            cred.issuer,
-            ownerOf(tokenId),
-            cred.revoked
-        );
+        return (cred.ipfsHash, cred.revoked);
     }
 
     /// @notice Get credential using file hash (MAIN VERIFICATION FUNCTION)

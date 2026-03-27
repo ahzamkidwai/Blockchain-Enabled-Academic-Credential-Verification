@@ -8,7 +8,8 @@ interface IAcademicCredential {
         uint256 indexed tokenId,
         address indexed student,
         address indexed institution,
-        string ipfsHash
+        string ipfsHash,
+        bytes32 fileHash
     );
 
     /// @notice Emitted when a credential is revoked
@@ -22,7 +23,8 @@ interface IAcademicCredential {
 
     function issueCredential(
         address student,
-        string calldata ipfsHash
+        string calldata ipfsHash,
+        bytes32 fileHash
     ) external returns (uint256);
 
     function revokeCredential(uint256 tokenId) external;
