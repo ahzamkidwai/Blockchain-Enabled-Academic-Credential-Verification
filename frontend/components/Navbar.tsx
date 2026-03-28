@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/issue", label: "Issue", icon: FilePlus },
+  { href: "/dashboard/issue-certificate", label: "Issue", icon: FilePlus },
   { href: "/verify", label: "Verify", icon: ShieldCheck },
 ];
 
