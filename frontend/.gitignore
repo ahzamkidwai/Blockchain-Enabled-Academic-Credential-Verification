@@ -38,3 +38,5 @@ Thumbs.db
 
 # lockfiles in parent directories
 ../package-lock.json
+
+.next

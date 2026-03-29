@@ -1,36 +1,100 @@
 import { contract } from "../config/ether.js";
 
 /// ISSUE
+// export const issueCredentialOnChain = async (
+//     student,
+//     ipfsHash,
+//     fileHash
+// ) => {
+//     const tx = await contract.issueCredential(student, ipfsHash, fileHash);
+
+//     const receipt = await tx.wait();
+
+//     /// Parse event logs safely
+//     const parsedLogs = receipt.logs
+//         .map((log) => {
+//             try {
+//                 return contract.interface.parseLog(log);
+//             } catch {
+//                 return null;
+//             }
+//         })
+//         .filter(Boolean);
+
+//     const event = parsedLogs.find(
+//         (e) => e.name === "CredentialIssued"
+//     );
+
+//     const tokenId = event.args.tokenId;
+
+//     return {
+//         receipt,
+//         tokenId: Number(tokenId), // convert BigInt → number
+//     };
+// };
+
+
 export const issueCredentialOnChain = async (
-    student,
-    ipfsHash,
-    fileHash
+  student,
+  ipfsHash,
+  fileHash,
+  credentialType,
+  expiresAt
 ) => {
-    const tx = await contract.issueCredential(student, ipfsHash, fileHash);
+  try {
+    console.log("==== BLOCKCHAIN CALL START ====");
+    console.log("Student:", student);
+    console.log("IPFS:", ipfsHash);
+    console.log("FileHash:", fileHash);
+    console.log("CredentialType:", credentialType);
+    console.log("ExpiresAt:", expiresAt);
+
+    /// 🔥 FIX: pass ALL 5 arguments
+    const tx = await contract.issueCredential(
+      student,
+      ipfsHash,
+      fileHash,
+      credentialType,
+      expiresAt
+    );
+
+    console.log("TX Sent:", tx.hash);
 
     const receipt = await tx.wait();
+    console.log("TX Confirmed:", receipt.hash);
 
     /// Parse event logs safely
     const parsedLogs = receipt.logs
-        .map((log) => {
-            try {
-                return contract.interface.parseLog(log);
-            } catch {
-                return null;
-            }
-        })
-        .filter(Boolean);
+      .map((log) => {
+        try {
+          return contract.interface.parseLog(log);
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
 
     const event = parsedLogs.find(
-        (e) => e.name === "CredentialIssued"
+      (e) => e.name === "CredentialIssued"
     );
+
+    if (!event) {
+      throw new Error("CredentialIssued event not found");
+    }
 
     const tokenId = event.args.tokenId;
 
+    console.log("Token ID:", tokenId.toString());
+    console.log("==== BLOCKCHAIN CALL END ====");
+
     return {
-        receipt,
-        tokenId: Number(tokenId), // convert BigInt → number
+      receipt,
+      tokenId: Number(tokenId),
     };
+  } catch (err) {
+    console.error("❌ Blockchain Error:", err);
+    throw err;
+  }
 };
 
 

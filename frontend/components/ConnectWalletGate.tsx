@@ -26,7 +26,8 @@ export function ConnectWalletGate({ children }: Props) {
             Connect Your Wallet
           </h2>
           <p className="text-sm text-muted-foreground">
-            You need a Web3 wallet to access this page. Connect MetaMask or another supported wallet to continue.
+            You need a Web3 wallet to access this page. Connect MetaMask or
+            another supported wallet to continue.
           </p>
         </div>
         <WalletConnect />
@@ -35,7 +36,7 @@ export function ConnectWalletGate({ children }: Props) {
   }
 
   const supportedChainIds: number[] = SUPPORTED_CHAINS.map((c) => c.id);
-  console.log("Chain IDs are : " + chainId + " and supported chain IDs are " + supportedChainIds);
+  // console.log("Chain IDs are : " + chainId + " and supported chain IDs are " + supportedChainIds);
   if (chainId && !supportedChainIds.includes(chainId)) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 text-center px-4">

@@ -9,41 +9,102 @@ import {
     revokeCredentialOnChain,
 } from "../services/blockchain.services.js";
 
+// export const issueCredential = async (req, res) => {
+//     try {
+//         const { student } = req.body;
+//         const file = req.file;
+
+//         /// 1. Upload to IPFS
+//         const ipfsHash = await uploadToIPFS(file.path);
+
+//         /// 2. Generate hash
+//         const buffer = fs.readFileSync(file.path);
+//         const fileHash = generateFileHash(buffer);
+
+//         /// 3. Blockchain call
+//         const { tokenId } = await issueCredentialOnChain(
+//             student,
+//             ipfsHash,
+//             fileHash
+//         );
+
+//         /// 4. Store in DB
+//         const credential = await Credential.create({
+//             student,
+//             issuer: process.env.WALLET_ADDRESS,
+//             ipfsHash,
+//             fileHash,
+//             tokenId,
+//         });
+
+//         fs.unlinkSync(file.path);
+
+//         res.json({ success: true, credential });
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// };
+
 export const issueCredential = async (req, res) => {
     try {
-        const { student } = req.body;
+        const { student, credentialType, expiresAt } = req.body;
         const file = req.file;
 
-        /// 1. Upload to IPFS
+        console.log("Issuing credential for:", student);
+
+        /// 1. Validation
+        if (!student || !file) {
+            return res.status(400).json({
+                error: "Student address and file are required",
+            });
+        }
+
+        /// 2. Upload to IPFS
         const ipfsHash = await uploadToIPFS(file.path);
 
-        /// 2. Generate hash
+        /// 3. Generate file hash
         const buffer = fs.readFileSync(file.path);
         const fileHash = generateFileHash(buffer);
 
-        /// 3. Blockchain call
+        /// 4. Defaults (if not provided)
+        const finalCredentialType = credentialType || "Degree";
+        const finalExpiresAt =
+            expiresAt || Math.floor(Date.now() / 1000) + 365 * 24 * 60 * 60; // 1 year
+
+        /// 5. Blockchain call (FIXED)
         const { tokenId } = await issueCredentialOnChain(
             student,
             ipfsHash,
-            fileHash
+            fileHash,
+            finalCredentialType,
+            finalExpiresAt
         );
 
-        /// 4. Store in DB
+        /// 6. Store in DB
         const credential = await Credential.create({
             student,
             issuer: process.env.WALLET_ADDRESS,
             ipfsHash,
             fileHash,
             tokenId,
+            credentialType: finalCredentialType,
+            expiresAt: finalExpiresAt,
         });
 
+        /// 7. Cleanup
         fs.unlinkSync(file.path);
 
         res.json({ success: true, credential });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error("Issue Credential Error:", err);
+
+        res.status(500).json({
+            success: false,
+            error: err.message,
+        });
     }
 };
+
 
 export const getStudentCertificates = async (req, res) => {
     try {
@@ -118,6 +179,7 @@ export const getOwner = async (req, res) => {
 export const checkInstitution = async (req, res) => {
     try {
         const { address } = req.params;
+        console.log("Checking institution for address: ", address);
 
         /// Basic validation
         if (!address) {
@@ -128,6 +190,7 @@ export const checkInstitution = async (req, res) => {
         }
 
         const isInstitution = await isInstitutionOnChain(address);
+        console.log(`Address ${address} is institution: `, isInstitution);
 
         res.json({
             success: true,

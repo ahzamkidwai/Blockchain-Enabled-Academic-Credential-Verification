@@ -12,6 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+console.log("CONTRACT ADDRESS : ", process.env.CONTRACT_ADDRESS);
+
 // DB Connection
 connectDB();
 

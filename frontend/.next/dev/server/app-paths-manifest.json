@@ -1,1 +1,6 @@
-{}
+{
+  "/dashboard/issue-certificate/page": "app/dashboard/issue-certificate/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/page": "app/page.js",
+  "/verify/page": "app/verify/page.js"
+}
