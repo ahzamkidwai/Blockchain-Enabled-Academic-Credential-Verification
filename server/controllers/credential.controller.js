@@ -4,6 +4,7 @@ import { uploadToIPFS } from "../config/ipfs.js";
 import { generateFileHash } from "../utils/hash.js";
 import {
     getContractOwner,
+    getInstitutionDetails,
     isInstitutionOnChain,
     issueCredentialOnChain,
     revokeCredentialOnChain,
@@ -190,6 +191,37 @@ export const checkInstitution = async (req, res) => {
         }
 
         const isInstitution = await isInstitutionOnChain(address);
+        console.log(`Address ${address} is institution: `, isInstitution);
+
+        res.json({
+            success: true,
+            address,
+            isInstitution,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            error: err.message,
+        });
+    }
+};
+
+
+/// CHECK INSTITUTION DETAILS
+export const checkInstitutionDetails = async (req, res) => {
+    try {
+        const { address } = req.params;
+        console.log("Checking institution Details for address: ", address);
+
+        /// Basic validation
+        if (!address) {
+            return res.status(400).json({
+                success: false,
+                error: "Address is required for checking Institution Details",
+            });
+        }
+
+        const isInstitution = await getInstitutionDetails(address);
         console.log(`Address ${address} is institution: `, isInstitution);
 
         res.json({

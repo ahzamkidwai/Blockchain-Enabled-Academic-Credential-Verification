@@ -8,4 +8,6 @@ library Errors {
     error TokenDoesNotExist();
     error SoulboundToken();
     error CredentialAlreadyIssued();
+    error CredentialAlreadyExists();
+    error Soulbound();
 }

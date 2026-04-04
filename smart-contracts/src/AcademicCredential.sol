@@ -32,11 +32,24 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         address issuer;
         string credentialType;
         uint256 expiresAt;
+        uint256 issuedAt;
+    }
+
+    struct StudentCredential {
+        uint256 tokenId;
+        string ipfsHash;
+        bytes32 fileHash;
+        bool revoked;
+        address issuer; 
+        string credentialType;
+        uint256 expiresAt;
+        uint256 issuedAt;
     }
 
     mapping(uint256 => Credential) private _credentials;
     mapping(bytes32 => uint256) private _hashToTokenId;
     mapping(address => bytes32[]) private _studentCertificates;
+    mapping(address => StudentCredential[]) private _studentWalletCredentials;
 
     /// =============================================================
     ///                         CONSTRUCTOR
@@ -117,11 +130,23 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
             revoked: false,
             issuer: msg.sender,
             credentialType: credentialType,
-            expiresAt: expiresAt
+            expiresAt: expiresAt,
+            issuedAt: block.timestamp
         });
 
         _hashToTokenId[fileHash] = tokenId;
         _studentCertificates[student].push(fileHash);
+
+        _studentWalletCredentials[student].push(StudentCredential({
+            tokenId: tokenId,
+            ipfsHash: ipfsHash,
+            fileHash: fileHash,
+            revoked: false,
+            issuer: msg.sender,
+            credentialType: credentialType,
+            expiresAt: expiresAt,
+            issuedAt: block.timestamp
+        }));
 
         emit CredentialIssued(tokenId, student, msg.sender, ipfsHash, fileHash);
     }
@@ -169,7 +194,9 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
             string memory ipfsHash,
             address issuer,
             address student,
-            bool revoked
+            bool revoked, 
+            uint256 expiresAt,
+            uint256 issuedAt
         )
     {
         uint256 tokenId = _hashToTokenId[fileHash];
@@ -180,7 +207,13 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
 
         Credential memory cred = _credentials[tokenId];
 
-        return (cred.ipfsHash, cred.issuer, ownerOf(tokenId), cred.revoked);
+        return (cred.ipfsHash, cred.issuer, ownerOf(tokenId), cred.revoked, cred.expiresAt, cred.issuedAt);
+    }
+
+    function getStudentCertificateDetails (
+        address student
+    ) external view returns (StudentCredential[] memory) {
+        return _studentWalletCredentials[student];
     }
 
     function getCertificatesOfStudent(

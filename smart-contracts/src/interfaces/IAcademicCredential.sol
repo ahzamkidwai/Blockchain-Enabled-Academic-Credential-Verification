@@ -54,7 +54,9 @@ interface IAcademicCredential {
             string memory ipfsHash,
             address issuer,
             address student,
-            bool revoked
+            bool revoked,
+            uint256 expiresAt,
+            uint256 issuedAt
         );
 
     function getCertificatesOfStudent(

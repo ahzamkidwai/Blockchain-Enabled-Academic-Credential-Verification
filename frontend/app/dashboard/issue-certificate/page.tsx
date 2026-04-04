@@ -44,7 +44,7 @@ const DEFAULT_FORM: FormState = {
   studentAddress: "",
   studentName: "",
   courseName: "",
-  universityName: "AcadChain University",
+  universityName: "",
   date: new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -59,6 +59,8 @@ export default function IssueCertificatePage() {
   // Auth state
   const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
   const [authLoading, setAuthLoading] = useState(false);
+
+  const [universityName, setUniversityName] = useState("");
 
   // Form
   const [form, setForm] = useState<FormState>(DEFAULT_FORM);
@@ -82,11 +84,27 @@ export default function IssueCertificatePage() {
     }
     setAuthLoading(true);
     console.log("API URL : ", `${API_BASE}/institution/${address}`);
-    fetch(`${API_BASE}/institution/${address}`)
-      .then((r) => r.json())
-      .then((data) => setIsAuthorized(data.isInstitution ?? false))
-      .catch(() => setIsAuthorized(false))
-      .finally(() => setAuthLoading(false));
+    const fetchInstitutionData = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/institution/${address}`);
+        const resData = await res.json();
+        console.log("Res Data is : ", resData);
+        const universityName = resData?.isInstitution[0] ?? "Unknown University";
+        const country = resData?.isInstitution[1] ?? "Unknown Country";
+        const completeUniversityname = `${universityName} ${country}`;
+        const isUniversity = resData?.isInstitution[2] ?? false;
+        setIsAuthorized(isUniversity ?? false); 
+        setUniversityName(completeUniversityname);
+        setForm((prev) => ({ ...prev, universityName: completeUniversityname }));
+      } catch (err) {
+        console.error("Error fetching institution data:", err);
+        setIsAuthorized(false);
+      } finally {
+        setAuthLoading(false);
+      }
+
+    }
+    fetchInstitutionData();
   }, [address]);
 
   // ── Form helpers ───────────────────────────────────────────────────────────

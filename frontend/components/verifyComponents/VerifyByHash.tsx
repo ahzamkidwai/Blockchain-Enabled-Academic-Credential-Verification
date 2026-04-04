@@ -25,6 +25,15 @@ import VerdictBanner from "./VerdictBanner";
 import { CredentialCard } from "../CredentialCard";
 import type { Credential } from "@/lib/types";
 
+type ContractResult = [
+  string,        // ipfsHash
+  `0x${string}`, // issuer
+  `0x${string}`, // student
+  boolean,       // revoked
+  bigint,        // expiresAt
+  bigint         // issuedAt
+];
+
 const VerifyByHash = () => {
   const [inputHash, setInputHash] = useState("");
   const [searchHash, setSearchHash] = useState<`0x${string}` | undefined>();
@@ -45,17 +54,26 @@ const VerifyByHash = () => {
   console.log("Is Loading inside verifyByHash : ", isLoading);
 
   // const result = data as [boolean, Credential] | undefined;
-  const result = data as
-    | [boolean, string, `0x${string}`, `0x${string}`, boolean]
-    | undefined;
+  // const result = data as
+  //   | [boolean, string, `0x${string}`, `0x${string}`, boolean]
+  //   | undefined;
+  const result = data as ContractResult | undefined;
 
-  const exists = result?.[0];
-  const ipfsHash = result?.[1];
-  const issuer = result?.[2];
-  const student = result?.[3];
-  const revoked = result?.[4];
-  const isValid = exists && !revoked;
+  // const exists = result?.[0];
+  // const ipfsHash = result?.[1];
+  // const issuer = result?.[2];
+  // const student = result?.[3];
+  // const revoked = result?.[4];
+  // const isValid = exists && !revoked;
+  const ipfsHash = result?.[0];
+  const issuer = result?.[1];
+  const student = result?.[2];
+  const revoked = result?.[3];
+  const expiresAt = result?.[4];
+  const issuedAt = result?.[5];
   const credential = result?.[1] ?? null;
+  const exists = !!result;
+  const isValid = exists && !revoked;
   console.log("Exists : ", exists);
   console.log("IPFS Hash : ", ipfsHash);
   console.log("Issuer : ", issuer);

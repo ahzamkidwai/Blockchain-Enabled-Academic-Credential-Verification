@@ -86,7 +86,8 @@ const CertificateForm = ({
             value={form.universityName}
             onChange={(e) => setField("universityName", e.target.value)}
             leftAdornment={<Building2 className="h-4 w-4" />}
-            disabled={isGenerating || isIssuing}
+            // disabled={isGenerating || isIssuing}
+            disabled={form.universityName.length > 0 || isGenerating || isIssuing}
           />
 
           <Input

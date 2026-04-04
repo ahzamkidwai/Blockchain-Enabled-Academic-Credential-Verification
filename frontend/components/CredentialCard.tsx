@@ -7,15 +7,16 @@ import {
   ChevronDown, ChevronUp, Copy, CheckCircle2, XCircle, PauseCircle
 } from "lucide-react";
 import { Card, CardContent, Badge, Button, Skeleton } from "@/components/ui";
-import type { Credential } from "@/lib/types";
+import type { StudentCredentialStruct } from "@/lib/types";
 import {
   truncateAddress, formatTimestamp, formatTimestampFull,
   getStatusLabel, getStatusVariant, ipfsToHttp,
   copyToClipboard, isCredentialExpired, cn
 } from "@/lib/utils";
+import CopyButton from "./issueCertificateComponents/CopyButton";
 
 interface CredentialCardProps {
-  credential: Credential;
+  credential: StudentCredentialStruct;
   isLoading?: boolean;
   showActions?: boolean;
   onRevoke?: (tokenId: bigint) => void;
@@ -44,7 +45,7 @@ export function CredentialCard({
 }: CredentialCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
-
+  console.log("Credential inside CredentialCard component : ", credential);
   const statusVariant = getStatusVariant(credential.status);
   const statusLabel = getStatusLabel(credential.status);
   const expired = isCredentialExpired(credential.expiresAt);
@@ -74,8 +75,8 @@ export function CredentialCard({
         className={cn(
           "h-1 w-full",
           statusVariant === "active" && !expired ? "bg-success" :
-          statusVariant === "revoked" ? "bg-destructive" :
-          statusVariant === "suspended" ? "bg-warning" : "bg-muted"
+            statusVariant === "revoked" ? "bg-destructive" :
+              statusVariant === "suspended" ? "bg-warning" : "bg-muted"
         )}
       />
 
@@ -110,11 +111,43 @@ export function CredentialCard({
             <p className="text-xs text-muted-foreground mb-0.5">Issued</p>
             <p className="font-medium text-foreground">{formatTimestamp(credential.issuedAt)}</p>
           </div>
-          <div>
+          {/* <div>
             <p className="text-xs text-muted-foreground mb-0.5">Expires</p>
             <p className={cn("font-medium", expired ? "text-destructive" : "text-foreground")}>
               {Number(credential.expiresAt) === 0 ? "Never" : formatTimestamp(credential.expiresAt)}
             </p>
+          </div> */}
+          <div className="mt-3">
+            <p className="text-xs text-muted-foreground mb-0.5">Credential Hash</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <code className="text-xs font-mono text-foreground bg-secondary px-2 py-1 rounded break-all">
+                0x1234567890abcdef1234567890abcdef12345678
+              </code>
+              <CopyButton text="0x1234567890abcdef1234567890abcdef12345678" />
+            </div>
+          </div>
+          <div>
+            <p className="text-xs text-muted-foreground mb-0.5">Certificate</p>
+            <div className={cn("font-medium", expired ? "text-destructive" : "text-foreground")}>
+              <div className="sm:col-span-2">
+                <div className="text-xs text-muted-foreground mb-0.5">IPFS Hash (CID)</div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <code className="text-xs font-mono text-foreground bg-secondary px-2 py-1 rounded break-all">
+                    {credential.ipfsHash}
+                  </code>
+                  <CopyButton text={credential.ipfsHash} />
+                  <a
+                    href={`https://gateway.pinata.cloud/ipfs/${credential.ipfsHash}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-primary hover:underline"
+                  >
+                    <ExternalLink className="h-3 w-3" />
+                    View on IPFS
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-0.5">Student</p>
@@ -133,12 +166,12 @@ export function CredentialCard({
         </div>
 
         {/* Revocation reason */}
-        {credential.revocationReason && (
+        {/* {credential.revocationReason && (
           <div className="rounded-md bg-destructive/10 border border-destructive/20 px-3 py-2 text-xs text-destructive mb-3">
             <span className="font-medium">Reason: </span>
             {credential.revocationReason}
-          </div>
-        )}
+          </div>2
+        )} */}
 
         {/* Expand / collapse */}
         {!compact && (
@@ -176,7 +209,7 @@ export function CredentialCard({
 
             {credential.ipfsCID && (
               <div>
-                <p className="text-xs text-muted-foreground mb-1">IPFS Document</p>
+                <p className="text-xs text-ipfsHashmuted-foreground mb-1">IPFS Document</p>
                 <a
                   href={ipfsToHttp(credential.ipfsCID)}
                   target="_blank"

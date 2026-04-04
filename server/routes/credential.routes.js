@@ -7,6 +7,7 @@ import {
     revokeCredential,
     getOwner,
     checkInstitution,
+    checkInstitutionDetails,
 } from "../controllers/credential.controller.js";
 
 const router = express.Router();
@@ -22,6 +23,8 @@ router.post("/revoke", revokeCredential);
 
 router.get("/owner", getOwner);
 
-router.get("/institution/:address", checkInstitution);
+router.get("/check-institution/:address", checkInstitution);
+
+router.get("/institution/:address", checkInstitutionDetails);
 
 export default router;

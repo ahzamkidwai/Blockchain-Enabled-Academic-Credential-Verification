@@ -1,4 +1,3 @@
-// components/ConnectWalletGate.tsx
 "use client";
 
 import { Wallet, ShieldAlert } from "lucide-react";
@@ -6,6 +5,7 @@ import { WalletConnect } from "@/components/WalletConnect";
 import { useWalletInfo } from "@/hooks/useContractStats";
 import { SUPPORTED_CHAINS } from "@/lib/wagmi";
 import { AlertBox } from "@/components/ui";
+import { useEffect, useState } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -14,6 +14,17 @@ interface Props {
 
 export function ConnectWalletGate({ children }: Props) {
   const { isConnected, chainId } = useWalletInfo();
+
+  // ✅ ADD THIS
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ PREVENT HYDRATION MISMATCH
+  if (!mounted) {
+    return null; // or loader if you want
+  }
 
   if (!isConnected) {
     return (
@@ -36,7 +47,7 @@ export function ConnectWalletGate({ children }: Props) {
   }
 
   const supportedChainIds: number[] = SUPPORTED_CHAINS.map((c) => c.id);
-  // console.log("Chain IDs are : " + chainId + " and supported chain IDs are " + supportedChainIds);
+
   if (chainId && !supportedChainIds.includes(chainId)) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 text-center px-4">

@@ -24,9 +24,12 @@ const STATUS_FILTERS = [
 ];
 
 function DashboardStats({ credentials }: { credentials: Credential[] }) {
-  const active = credentials.filter((c) => c.status === 0).length;
-  const revoked = credentials.filter((c) => c.status === 1).length;
-  const suspended = credentials.filter((c) => c.status === 2).length;
+  // const active = credentials.filter((c) => c.status === 0).length;
+  // const revoked = credentials.filter((c) => c.status === 1).length;
+  // const suspended = credentials.filter((c) => c.status === 2).length;
+  const active = credentials.filter((c) => !c.revoked).length;
+  const revoked = credentials.filter((c) => c.revoked).length;
+  const suspended = 0; // not implemented in contract
 
   const stats = [
     { icon: Award, label: "Total", value: credentials.length, color: "text-primary" },
@@ -52,7 +55,9 @@ function DashboardStats({ credentials }: { credentials: Credential[] }) {
 
 export default function DashboardPage() {
   const { address } = useWalletInfo();
-  const { credentials, isLoading, refetch } = useStudentCredentials(address);
+  console.log("Wallet inside dashboard route : ", address);
+  const { credentials, isLoading } = useStudentCredentials(address);
+  console.log("Credentials inside dashboard route : ", credentials);
   const { revokeCredential } = useRevokeCredential();
   const { suspendCredential } = useSuspendCredential();
   const { reinstateCredential } = useReinstateCredential();
@@ -61,11 +66,16 @@ export default function DashboardPage() {
   const [statusFilter, setStatusFilter] = useState("all");
 
   const filtered = credentials.filter((c) => {
-    const matchesStatus = statusFilter === "all" || c.status === Number(statusFilter);
+    const status = c.revoked ? 1 : 0;
+
+    const matchesStatus =
+      statusFilter === "all" || status === Number(statusFilter);
+
     const matchesSearch =
       !searchQuery ||
-      c.credentialType.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.institutionName.toLowerCase().includes(searchQuery.toLowerCase());
+      (c.ipfsHash?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
+      (c.issuer?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
+
     return matchesStatus && matchesSearch;
   });
 
@@ -99,7 +109,7 @@ export default function DashboardPage() {
             variant="outline"
             size="sm"
             leftIcon={<RefreshCw className="h-4 w-4" />}
-            onClick={() => refetch()}
+            // onClick={() => refetch()}
           >
             Refresh
           </Button>
@@ -171,16 +181,26 @@ export default function DashboardPage() {
         {/* Credential grid */}
         {!isLoading && filtered.length > 0 && (
           <div className="grid sm:grid-cols-2 gap-4">
-            {filtered.map((cred) => (
-              <CredentialCard
-                key={cred.tokenId.toString()}
-                credential={cred}
-                showActions={false}
-                onRevoke={handleRevoke}
-                onSuspend={handleSuspend}
-                onReinstate={(id) => reinstateCredential(id)}
-              />
-            ))}
+            {filtered.map((cred, index) => {
+              const mappedCredential = {
+                ...cred,
+                tokenId: cred.tokenId ?? BigInt(index + 1),
+                status: cred.revoked ? 1 : 0,
+                credentialType: cred.credentialType ?? "Degree",
+                institutionName: cred.institutionName ?? "Unknown Institution",
+              };
+
+              return (
+                <CredentialCard
+                  key={mappedCredential.tokenId.toString()}
+                  credential={mappedCredential}
+                  showActions={false}
+                  onRevoke={handleRevoke}
+                  onSuspend={handleSuspend}
+                  onReinstate={(id) => reinstateCredential(id)}
+                />
+              );
+            })}
           </div>
         )}
       </div>
