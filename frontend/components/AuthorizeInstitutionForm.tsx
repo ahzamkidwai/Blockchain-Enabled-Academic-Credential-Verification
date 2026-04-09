@@ -3,77 +3,57 @@
 import { useEffect, useState } from "react";
 import {
   useAccount,
-  useContractRead,
   useWaitForTransactionReceipt,
   useWriteContract,
 } from "wagmi";
-import { ShieldCheck, CheckCircle2 } from "lucide-react";
-import { Button, Card, CardContent, CardHeader, CardTitle, Input, AlertBox } from "@/components/ui";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Input,
+  AlertBox,
+} from "@/components/ui";
 import { CONTRACT_ADDRESS, CREDENTIAL_ABI } from "@/lib/contract";
-import { cn, isValidAddress, truncateAddress } from "@/lib/utils";
+import { isValidAddress, truncateAddress } from "@/lib/utils";
 import toast from "react-hot-toast";
-
-type TabId = "authorize" | "check";
-
-const TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
-  { id: "authorize", label: "Authorize", icon: ShieldCheck },
-  { id: "check", label: "Check Authorization", icon: CheckCircle2 },
-];
 
 export default function AuthorizeInstitutionForm() {
   const { address } = useAccount();
 
+  // Form states
   const [institutionAddress, setInstitutionAddress] = useState("");
-  const [fieldError, setFieldError] = useState<string | undefined>(undefined);
+  const [institutionName, setInstitutionName] = useState("");
+  const [institutionCountry, setInstitutionCountry] = useState("");
+
+  // UI states
+  const [fieldError, setFieldError] = useState<string | undefined>();
   const [error, setError] = useState<string | null>(null);
   const [txHash, setTxHash] = useState<string | null>(null);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
-
-  const [tab, setTab] = useState<TabId>("authorize");
-  const [checkAddress, setCheckAddress] = useState("");
-  const [checkedAddress, setCheckedAddress] = useState<string | null>(null);
-  const [checkFieldError, setCheckFieldError] = useState<string | undefined>(undefined);
-  const [checkError, setCheckError] = useState<string | null>(null);
 
   const isAddressValid = isValidAddress(institutionAddress.trim());
-  const isCheckAddressValid = isValidAddress(checkAddress.trim());
 
   const {
     data: hash,
     writeContractAsync,
-    isPending: isWritePending,
+    isPending,
     error: writeError,
   } = useWriteContract();
 
-  const {
-    data: isAuthorized,
-    isLoading: isChecking,
-    error: checkReadError,
-    refetch: refetchCheck,
-  } = useContractRead({
-    address: CONTRACT_ADDRESS,
-    abi: CREDENTIAL_ABI,
-    functionName: "isAuthorizedInstitution",
-    args: checkedAddress ? [checkedAddress as `0x${string}`] : undefined,
-    // enabled: Boolean(checkedAddress),
-  });
-
-  const {
-    isLoading: isConfirming,
-    isSuccess: isConfirmed,
-  } = useWaitForTransactionReceipt({
-    hash,
-  });
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({
+      hash,
+    });
 
   // Handle tx hash
   useEffect(() => {
     if (hash) {
       setTxHash(hash);
-      setHasSubmitted(true);
     }
   }, [hash]);
 
-  // Handle write error
+  // Handle errors
   useEffect(() => {
     if (writeError) {
       setError(writeError.message);
@@ -84,43 +64,50 @@ export default function AuthorizeInstitutionForm() {
   // Success toast
   useEffect(() => {
     if (isConfirmed) {
-      toast.success("Institution authorized successfully.");
+      toast.success("Institution authorized successfully 🎉");
+
+      // Reset form
+      setInstitutionAddress("");
+      setInstitutionName("");
+      setInstitutionCountry("");
     }
   }, [isConfirmed]);
 
-  const validateAuthorization = (): boolean => {
+  // Validation
+  const validate = (): boolean => {
     if (!institutionAddress.trim()) {
       setFieldError("Institution address is required");
       return false;
     }
+
     if (!isAddressValid) {
       setFieldError("Enter a valid Ethereum address");
       return false;
     }
+
+    if (!institutionName.trim()) {
+      setError("Institution name is required");
+      return false;
+    }
+
+    if (!institutionCountry.trim()) {
+      setError("Country is required");
+      return false;
+    }
+
     setFieldError(undefined);
+    setError(null);
     return true;
   };
 
-  const validateCheck = (): boolean => {
-    if (!checkAddress.trim()) {
-      setCheckFieldError("Institution address is required");
-      return false;
-    }
-    if (!isCheckAddressValid) {
-      setCheckFieldError("Enter a valid Ethereum address");
-      return false;
-    }
-    setCheckFieldError(undefined);
-    return true;
-  };
+  // Submit handler
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const handleAuthorize = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
     setError(null);
     setTxHash(null);
-    setHasSubmitted(false);
 
-    if (!validateAuthorization()) return;
+    if (!validate()) return;
 
     try {
       await writeContractAsync({
@@ -129,40 +116,19 @@ export default function AuthorizeInstitutionForm() {
         functionName: "authorizeInstitution",
         args: [
           institutionAddress.trim() as `0x${string}`,
-          "Authorized Institution",
-          "Global",
+          institutionName.trim(),
+          institutionCountry.trim(),
         ],
       });
 
-      toast.loading("Sending authorization transaction...");
+      toast.loading("Sending transaction...");
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Transaction failed to send.";
+      const message =
+        err instanceof Error ? err.message : "Transaction failed.";
       setError(message);
       toast.error(message);
     }
   };
-
-  const handleCheck = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setCheckError(null);
-    setCheckedAddress(null);
-
-    if (!validateCheck()) return;
-
-    const normalized = checkAddress.trim() as `0x${string}`;
-    setCheckedAddress(normalized);
-
-    if (checkedAddress === normalized) {
-      await refetchCheck?.();
-    }
-  };
-
-  const checkResultAvailable = typeof isAuthorized === "boolean" && !isChecking && checkedAddress;
-  const checkResultVariant = isAuthorized ? "success" : "warning";
-  const checkResultTitle = isAuthorized ? "Authorized Institution" : "Not Authorized";
-  const checkResultMessage = isAuthorized
-    ? `${truncateAddress(checkedAddress ?? "")} is authorized to issue credentials.`
-    : `${truncateAddress(checkedAddress ?? "")} is not authorized to issue credentials.`;
 
   return (
     <Card>
@@ -172,12 +138,13 @@ export default function AuthorizeInstitutionForm() {
 
       <CardContent className="space-y-5">
         <p className="text-sm text-muted-foreground">
-          Enter an institution wallet address to authorize it on-chain.
+          Authorize an institution to issue credentials on-chain.
         </p>
 
-        <form onSubmit={handleAuthorize} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Address */}
           <Input
-            label="Institution Wallet Address"
+            label="Institution Address"
             placeholder="0x1234..."
             value={institutionAddress}
             onChange={(e) => {
@@ -186,39 +153,69 @@ export default function AuthorizeInstitutionForm() {
               setError(null);
             }}
             error={fieldError}
-            hint="Enter the Ethereum address of the institution to authorize."
           />
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          {/* Name */}
+          <Input
+            label="Institution Name"
+            placeholder="e.g. Harvard University"
+            value={institutionName}
+            onChange={(e) => {
+              setInstitutionName(e.target.value);
+              setError(null);
+            }}
+          />
+
+          {/* Country */}
+          <Input
+            label="Country"
+            placeholder="e.g. USA"
+            value={institutionCountry}
+            onChange={(e) => {
+              setInstitutionCountry(e.target.value);
+              setError(null);
+            }}
+          />
+
+          {/* Button + Wallet */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
             <Button
               type="submit"
-              isLoading={isWritePending || isConfirming}
-              disabled={!isAddressValid || isWritePending || isConfirming}
+              isLoading={isPending || isConfirming}
+              disabled={
+                !isAddressValid ||
+                !institutionName.trim() ||
+                !institutionCountry.trim() ||
+                isPending ||
+                isConfirming
+              }
             >
-              Authorize Institute
+              Authorize Institution
             </Button>
 
             <div className="text-sm text-muted-foreground">
               {address
-                ? `Connected wallet: ${truncateAddress(address)}`
-                : "Connect your wallet to continue."}
+                ? `Connected: ${truncateAddress(address)}`
+                : "Connect wallet"}
             </div>
           </div>
         </form>
 
+        {/* Error */}
         {error && (
-          <AlertBox variant="error" title="Authorization failed">
+          <AlertBox variant="error" title="Transaction Failed">
             {error}
           </AlertBox>
         )}
 
-        {hasSubmitted && txHash && (
+        {/* Transaction Info */}
+        {txHash && (
           <AlertBox
             variant={isConfirmed ? "success" : "info"}
-            title={isConfirmed ? "Authorized" : "Transaction sent"}
+            title={isConfirmed ? "Success" : "Transaction Sent"}
           >
-            <div className="space-y-1 text-sm">
-              <p>Institution authorization transaction has been submitted.</p>
+            <div className="text-sm space-y-1">
+              <p>Transaction Hash:</p>
               <p className="font-mono break-all">{txHash}</p>
             </div>
           </AlertBox>
@@ -226,4 +223,4 @@ export default function AuthorizeInstitutionForm() {
       </CardContent>
     </Card>
   );
-} 
+}
