@@ -1,22 +1,59 @@
-// components/Navbar.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Moon, Sun, GraduationCap, LayoutDashboard, ShieldCheck, FilePlus } from "lucide-react";
+import { Moon, Sun, GraduationCap, LayoutDashboard, ShieldCheck, FilePlus, LucideIcon } from "lucide-react";
 import { WalletConnect } from "@/components/WalletConnect";
 import { cn } from "@/lib/utils";
+import { useContractOwner } from "@/hooks/useContractOwner";
+import { useAccount } from "wagmi";
+import { useInstitution } from "@/hooks/useContractStats";
 
-const NAV_LINKS = [
+// ✅ Type for nav links
+type NavLink = {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+};
+
+const NAV_LINKS_FOR_USERS: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/verify", label: "Verify", icon: ShieldCheck },
+];
+
+const NAV_LINKS_FOR_ADMIN: NavLink[] = [
+  { href: "/authorize-institution", label: "Authorize Institution", icon: ShieldCheck },
+  { href: "/verify", label: "Verify", icon: ShieldCheck },
+];
+
+const NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS: NavLink[] = [
   { href: "/dashboard/issue-certificate", label: "Issue", icon: FilePlus },
   { href: "/verify", label: "Verify", icon: ShieldCheck },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
+  const { owner } = useContractOwner();
+  const { address, isConnected } = useAccount();
+  const { institution } = useInstitution(address);
   const { theme, setTheme } = useTheme();
+
+  // ✅ Safe owner check
+  const isOwner =
+    typeof owner === "string" &&
+    typeof address === "string" &&
+    owner.toLowerCase() === address.toLowerCase();
+
+  // ✅ Safe institution check
+  const isAuthorizedInstitution = !!institution?.isActive;
+
+  // ✅ Derive nav links (NO state, NO effects)
+  const navLinks: NavLink[] = isOwner
+    ? NAV_LINKS_FOR_ADMIN
+    : isAuthorizedInstitution
+    ? NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS
+    : NAV_LINKS_FOR_USERS;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-md">
@@ -36,9 +73,9 @@ export function Navbar() {
           </div>
         </Link>
 
-        {/* Nav links */}
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ href, label, icon: Icon }) => (
+          {navLinks.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}
               href={href}
@@ -71,15 +108,15 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile Nav */}
       <div className="flex md:hidden border-t border-border bg-card/50">
-        {NAV_LINKS.map(({ href, label, icon: Icon }) => (
+        {navLinks.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
             href={href}
             className={cn(
               "flex flex-1 flex-col items-center gap-1 px-2 py-2 text-[10px] font-medium transition-colors",
-              pathname === href
+              pathname === href || pathname.startsWith(href + "/")
                 ? "text-primary"
                 : "text-muted-foreground"
             )}
