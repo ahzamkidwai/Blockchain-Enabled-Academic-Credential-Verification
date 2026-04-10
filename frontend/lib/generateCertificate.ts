@@ -83,7 +83,7 @@ export async function generateCertificatePDF(
     height: height - pad * 2 - 16,
     borderColor: GOLD_LIGHT,
     borderWidth: 0.8,
-    color: rgb(0, 0, 0, 0), // transparent
+    color: rgb(0, 0, 0), // transparent
   });
 
   // ── Header banner ──────────────────────────────────────────────────────────

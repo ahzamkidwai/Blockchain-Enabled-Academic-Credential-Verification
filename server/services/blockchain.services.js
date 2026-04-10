@@ -1,39 +1,5 @@
 import { contract } from "../config/ether.js";
 
-/// ISSUE
-// export const issueCredentialOnChain = async (
-//     student,
-//     ipfsHash,
-//     fileHash
-// ) => {
-//     const tx = await contract.issueCredential(student, ipfsHash, fileHash);
-
-//     const receipt = await tx.wait();
-
-//     /// Parse event logs safely
-//     const parsedLogs = receipt.logs
-//         .map((log) => {
-//             try {
-//                 return contract.interface.parseLog(log);
-//             } catch {
-//                 return null;
-//             }
-//         })
-//         .filter(Boolean);
-
-//     const event = parsedLogs.find(
-//         (e) => e.name === "CredentialIssued"
-//     );
-
-//     const tokenId = event.args.tokenId;
-
-//     return {
-//         receipt,
-//         tokenId: Number(tokenId), // convert BigInt → number
-//     };
-// };
-
-
 export const issueCredentialOnChain = async (
   student,
   ipfsHash,

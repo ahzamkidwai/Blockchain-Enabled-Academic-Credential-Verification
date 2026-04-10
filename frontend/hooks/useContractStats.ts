@@ -3,20 +3,6 @@ import { useReadContract } from "wagmi";
 import { useAccount, useBalance, useChainId } from "wagmi";
 import { CREDENTIAL_ABI, CONTRACT_ADDRESS, CHAIN_NAMES } from "@/lib/contract";
 
-// export function useTotalCredentials() {
-//   const { data, isLoading, refetch } = useReadContract({
-//     address: CONTRACT_ADDRESS,
-//     abi: CREDENTIAL_ABI,
-//     functionName: "totalCredentials",
-//   });
-
-//   return {
-//     total: data as bigint | undefined,
-//     isLoading,
-//     refetch,
-//   };
-// }
-
 export function useTotalCredentials() {
   const { data, isLoading, refetch, error } = useReadContract({
     address: CONTRACT_ADDRESS,
@@ -46,33 +32,11 @@ export function useInstitution(address?: `0x${string}`) {
     query: { enabled: !!address },
   });
 
-  const result = data as [string, string, boolean] | undefined;
-
   return {
-    institution: result ? {
-      name: result[0],
-      country: result[1],
-      isActive: result[2],
-    } : null,
+    institution: data as boolean | undefined,
     isLoading,
   };
 }
-
-
-// export function useInstitution(address?: `0x${string}`) {
-//   const { data, isLoading } = useReadContract({
-//     address: CONTRACT_ADDRESS,
-//     abi: CREDENTIAL_ABI,
-//     functionName: "isAuthorizedInstitution",
-//     args: address ? [address] : undefined,
-//     query: { enabled: !!address },
-//   });
-
-//   return {
-//     isAuthorized: data as boolean | undefined,
-//     isLoading,
-//   };
-// }
 
 // hooks/useWalletInfo.ts
 export function useWalletInfo() {

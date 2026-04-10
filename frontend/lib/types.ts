@@ -1,5 +1,7 @@
 // lib/types.ts
 
+import { LucideIcon } from "lucide-react";
+
 export interface Credential {
   tokenId: bigint;
   student: `0x${string}`;
@@ -71,3 +73,9 @@ export interface VerificationResult {
   credential: Credential | null;
   checkedAt: Date;
 }
+
+export type NavLink = {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+};

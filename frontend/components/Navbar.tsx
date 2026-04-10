@@ -3,34 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Moon, Sun, GraduationCap, LayoutDashboard, ShieldCheck, FilePlus, LucideIcon } from "lucide-react";
+import { Moon, Sun, GraduationCap } from "lucide-react";
 import { WalletConnect } from "@/components/WalletConnect";
 import { cn } from "@/lib/utils";
 import { useContractOwner } from "@/hooks/useContractOwner";
 import { useAccount } from "wagmi";
 import { useInstitution } from "@/hooks/useContractStats";
-
-// ✅ Type for nav links
-type NavLink = {
-  href: string;
-  label: string;
-  icon: LucideIcon;
-};
-
-const NAV_LINKS_FOR_USERS: NavLink[] = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/verify", label: "Verify", icon: ShieldCheck },
-];
-
-const NAV_LINKS_FOR_ADMIN: NavLink[] = [
-  { href: "/authorize-institution", label: "Authorize Institution", icon: ShieldCheck },
-  { href: "/verify", label: "Verify", icon: ShieldCheck },
-];
-
-const NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS: NavLink[] = [
-  { href: "/dashboard/issue-certificate", label: "Issue", icon: FilePlus },
-  { href: "/verify", label: "Verify", icon: ShieldCheck },
-];
+import {
+  NAV_LINKS_FOR_ADMIN,
+  NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS,
+  NAV_LINKS_FOR_USERS,
+} from "@/constants/navbarRoutes";
+import { NavLink } from "@/lib/types";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -39,21 +23,18 @@ export function Navbar() {
   const { institution } = useInstitution(address);
   const { theme, setTheme } = useTheme();
 
-  // ✅ Safe owner check
   const isOwner =
     typeof owner === "string" &&
     typeof address === "string" &&
     owner.toLowerCase() === address.toLowerCase();
 
-  // ✅ Safe institution check
-  const isAuthorizedInstitution = !!institution?.isActive;
+  const isAuthorizedInstitution = !!institution;
 
-  // ✅ Derive nav links (NO state, NO effects)
   const navLinks: NavLink[] = isOwner
     ? NAV_LINKS_FOR_ADMIN
     : isAuthorizedInstitution
-    ? NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS
-    : NAV_LINKS_FOR_USERS;
+      ? NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS
+      : NAV_LINKS_FOR_USERS;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-md">
@@ -83,7 +64,7 @@ export function Navbar() {
                 "flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 pathname === href || pathname.startsWith(href + "/")
                   ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary",
               )}
             >
               <Icon className="h-4 w-4" />
@@ -118,7 +99,7 @@ export function Navbar() {
               "flex flex-1 flex-col items-center gap-1 px-2 py-2 text-[10px] font-medium transition-colors",
               pathname === href || pathname.startsWith(href + "/")
                 ? "text-primary"
-                : "text-muted-foreground"
+                : "text-muted-foreground",
             )}
           >
             <Icon className="h-4 w-4" />
