@@ -20,30 +20,15 @@ import SuccessResultPanel from "@/components/issueCertificateComponents/SuccessR
 import CertificateForm from "@/components/issueCertificateComponents/CertificateForm";
 import { CONTRACT_ADDRESS, CREDENTIAL_ABI } from "@/lib/contract";
 import type { Address } from "viem";
-
-const API_BASE = "http://localhost:5000/api/credentials";
-
-const DEFAULT_FORM: FormState = {
-  studentAddress: "",
-  studentName: "",
-  courseName: "",
-  universityName: "",
-  date: new Date().toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }),
-};
+import { useInstitution } from "@/hooks/useInstitutionDetails";
+import { DEFAULT_FORM } from "@/constants/issue-certificate";
 
 export default function IssueCertificatePage() {
   const { address } = useAccount();
   const { writeContractAsync } = useWriteContract();
-
-  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
-  const [authLoading, setAuthLoading] = useState(false);
-
-  const [universityName, setUniversityName] = useState("");
-
+  const { institutionName, isVerified, isLoading } = useInstitution(address);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [form, setForm] = useState<FormState>(DEFAULT_FORM);
   const [errors, setErrors] = useState<Partial<FormState>>({});
 
@@ -57,39 +42,27 @@ export default function IssueCertificatePage() {
   const [txHash, setTxHash] = useState<string | null>(null);
   const [result, setResult] = useState<IssuanceResult | null>(null);
 
-  // ── Check institution ─────────────────────────────
   useEffect(() => {
     if (!address) return;
 
-    setAuthLoading(true);
+    if (isLoading) {
+      setAuthLoading(true);
+      return;
+    }
 
-    const fetchInstitution = async () => {
-      try {
-        const res = await fetch(`${API_BASE}/institution/${address}`);
-        const data = await res.json();
+    setAuthLoading(false);
 
-        const name = data?.isInstitution?.[0] ?? "Unknown";
-        const country = data?.isInstitution?.[1] ?? "";
-        const isAuth = data?.isInstitution?.[2] ?? false;
+    if (institutionName) {
+      setIsAuthorized(!!isVerified);
+      setForm((prev) => ({
+        ...prev,
+        universityName: institutionName,
+      }));
+    } else {
+      setIsAuthorized(false);
+    }
+  }, [address, institutionName, isVerified, isLoading]);
 
-        setIsAuthorized(isAuth);
-        setUniversityName(`${name} ${country}`);
-
-        setForm((p) => ({
-          ...p,
-          universityName: `${name} ${country}`,
-        }));
-      } catch {
-        setIsAuthorized(false);
-      } finally {
-        setAuthLoading(false);
-      }
-    };
-
-    fetchInstitution();
-  }, [address]);
-
-  // ── form helpers ─────────────────────────────
   const setField = (field: keyof FormState, value: string) => {
     setForm((p) => ({ ...p, [field]: value }));
   };
@@ -107,7 +80,6 @@ export default function IssueCertificatePage() {
     return Object.keys(e).length === 0;
   };
 
-  // ── generate PDF ─────────────────────────────
   const handleGenerate = useCallback(async () => {
     if (!validate()) return;
 
@@ -119,7 +91,7 @@ export default function IssueCertificatePage() {
         courseName: form.courseName,
         universityName: form.universityName,
         date: form.date,
-        verifyUrl: "http://localhost:3000/verify",
+        // verifyUrl: "",
       });
 
       setPdfBlob(cert.blob);
@@ -138,7 +110,6 @@ export default function IssueCertificatePage() {
     }
   }, [form]);
 
-  // ── download ─────────────────────────────
   const handleDownload = () => {
     if (!pdfBlob) return;
 
@@ -152,7 +123,6 @@ export default function IssueCertificatePage() {
     URL.revokeObjectURL(url);
   };
 
-  // ── issue on-chain ─────────────────────────────
   const handleIssue = async () => {
     if (!pdfBlob || !form.studentAddress || !pdfHash) return;
 
@@ -212,7 +182,6 @@ export default function IssueCertificatePage() {
     }
   };
 
-  // ── reset ─────────────────────────────
   const handleReset = () => {
     setForm(DEFAULT_FORM);
     setPdfBlob(null);
@@ -224,16 +193,7 @@ export default function IssueCertificatePage() {
     setTxHash(null);
   };
 
-  const currentStep =
-    step === "idle"
-      ? 1
-      : step === "generating"
-        ? 2
-        : step === "generated"
-          ? 2
-          : step === "issuing"
-            ? 3
-            : 4;
+  const currentStep = step === "idle" ? 1 : step === "generating" ? 2 : step === "generated" ? 2 : step === "issuing" ? 3 : 4;
 
   return (
     <ConnectWalletGate>
@@ -244,9 +204,9 @@ export default function IssueCertificatePage() {
 
         {authLoading && <Loader2 className="animate-spin" />}
 
-        {!authLoading && isAuthorized === false && (
+        {!authLoading && !isAuthorized && (
           <AlertBox variant="error" title="Not Authorized">
-            Your wallet is not authorized
+            Your wallet is not authorized to issue certificates
           </AlertBox>
         )}
 

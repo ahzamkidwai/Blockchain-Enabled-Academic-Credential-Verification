@@ -28,7 +28,7 @@ const CertificateForm = ({
   errors: Partial<FormState>;
   isGenerating: boolean;
   isIssuing: boolean;
-  isAuthorized: boolean | null;
+  isAuthorized: boolean;
   handleGenerate: () => void;
   handleDownload: () => void;
   handleIssue: () => void;
