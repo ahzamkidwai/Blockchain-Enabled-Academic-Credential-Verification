@@ -1,4 +1,3 @@
-// components/StatsBar.tsx
 "use client";
 
 import { Award, ShieldCheck, Building2, TrendingUp } from "lucide-react";
