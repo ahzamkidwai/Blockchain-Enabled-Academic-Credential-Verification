@@ -15,7 +15,7 @@ The project is split into two main parts:
 - **Issue Credentials**: Authorized academic institutions can issue soulbound NFTs representing academic certificates.
 - **Public Verification**: Anyone can instantly verify a certificate's authenticity on-chain using its unique hash.
 - **Student Dashboard**: Students can connect their wallets to view all their issued academic credentials.
-- **IPFS Integration**: Encrypted certificate documents are stored off-chain on IPFS (via Pinata/Web3.storage), ensuring immutability without bloating the blockchain.
+- **IPFS Integration**: Encrypted certificate documents are stored off-chain on IPFS using **Pinata**, ensuring immutability without bloating the blockchain.
 - **Revocation System**: Institutions have the ability to revoke or suspend fraudulent or erroneous credentials.
 - **Dark Mode**: Fully responsive UI with system-aware dark mode support.
 
@@ -142,9 +142,20 @@ npm install
 Create a `.env.local` file in the `frontend` directory based on the `.env.example` file (if available), or create one manually:
 
 ```env
+# Smart Contract & Network Configuration
 NEXT_PUBLIC_CONTRACT_ADDRESS="your_deployed_contract_address_here"
-# Add any required IPFS or RPC URLs
+NEXT_PUBLIC_RPC_URL="http://127.0.0.1:8545" # For Anvil local node
+NEXT_PUBLIC_CHAIN_ID="31337" # 31337 for local Anvil
+
+# WalletConnect Project ID for Wagmi
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID="your_walletconnect_project_id_here"
+
+# Pinata IPFS Integration Keys
+NEXT_PUBLIC_PINATA_API_KEY="your_pinata_api_key_here"
+NEXT_PUBLIC_PINATA_SECRET_KEY="your_pinata_secret_key_here"
 ```
+
+*Note: You can generate your Pinata keys by creating a free account on [Pinata](https://www.pinata.cloud/) and navigating to the API Keys section in the developer portal.*
 
 **Run the development server:**
 
