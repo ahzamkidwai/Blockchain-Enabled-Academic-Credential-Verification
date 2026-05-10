@@ -1,4 +1,3 @@
-// components/ui/index.tsx
 "use client";
 
 import React from "react";
@@ -109,40 +108,32 @@ export const Card = React.forwardRef<
 ));
 Card.displayName = "Card";
 
-export const CardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex flex-col gap-1.5 p-6", className)} {...props} />
-));
+export const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("flex flex-col gap-1.5 p-6", className)} {...props} />
+  )
+);
 CardHeader.displayName = "CardHeader";
 
-export const CardTitle = React.forwardRef<
-  HTMLHeadingElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn("font-display text-xl font-semibold leading-tight", className)}
-    {...props}
-  />
-));
+export const CardTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h3 ref={ref} className={cn("font-display text-xl font-semibold leading-tight", className)} {...props} />
+  )
+);
 CardTitle.displayName = "CardTitle";
 
-export const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
-));
+export const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  )
+);
 CardContent.displayName = "CardContent";
 
-export const CardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex items-center p-6 pt-0", className)} {...props} />
-));
+export const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("flex items-center p-6 pt-0", className)} {...props} />
+  )
+);
 CardFooter.displayName = "CardFooter";
 
 // ── Input ─────────────────────────────────────────────────────────────────────
@@ -155,14 +146,12 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, hint, leftAdornment, id, ...props }, ref) => {
-    const inputId = id || label?.toLowerCase().replace(/\s+/g, "-");
+    const reactId = React.useId();
+    const inputId = id ?? reactId;
+
     return (
       <div className="flex flex-col gap-1.5">
-        {label && (
-          <label htmlFor={inputId} className="text-sm font-medium text-foreground">
-            {label}
-          </label>
-        )}
+        {label && <label htmlFor={inputId} className="text-sm font-medium">{label}</label>}
         <div className="relative">
           {leftAdornment && (
             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -173,12 +162,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             className={cn(
-              "flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2",
-              "text-sm font-body text-foreground placeholder:text-muted-foreground",
-              "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-              "disabled:cursor-not-allowed disabled:opacity-50",
+              "flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               leftAdornment && "pl-9",
-              error && "border-destructive focus-visible:ring-destructive",
+              error && "border-destructive",
               className
             )}
             {...props}
@@ -201,31 +188,25 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, label, error, options, id, ...props }, ref) => {
-    const selectId = id || label?.toLowerCase().replace(/\s+/g, "-");
+    const reactId = React.useId();
+    const selectId = id ?? reactId;
+
     return (
       <div className="flex flex-col gap-1.5">
-        {label && (
-          <label htmlFor={selectId} className="text-sm font-medium text-foreground">
-            {label}
-          </label>
-        )}
+        {label && <label htmlFor={selectId} className="text-sm font-medium">{label}</label>}
         <select
           ref={ref}
           id={selectId}
           className={cn(
-            "flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2",
-            "text-sm font-body text-foreground",
-            "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-            "disabled:cursor-not-allowed disabled:opacity-50",
+            "flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             error && "border-destructive",
             className
           )}
           {...props}
         >
           {options.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
         {error && <p className="text-xs text-destructive">{error}</p>}
@@ -236,8 +217,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
 Select.displayName = "Select";
 
 // ── Textarea ──────────────────────────────────────────────────────────────────
-export interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
   hint?: string;
@@ -245,22 +225,18 @@ export interface TextareaProps
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, error, hint, id, ...props }, ref) => {
-    const taId = id || label?.toLowerCase().replace(/\s+/g, "-");
+    const reactId = React.useId();
+    const taId = id ?? reactId;
+
     return (
       <div className="flex flex-col gap-1.5">
-        {label && (
-          <label htmlFor={taId} className="text-sm font-medium text-foreground">
-            {label}
-          </label>
-        )}
+        {label && <label htmlFor={taId} className="text-sm font-medium">{label}</label>}
         <textarea
           ref={ref}
           id={taId}
           className={cn(
-            "flex min-h-[80px] w-full rounded-lg border border-input bg-background px-3 py-2",
-            "text-sm font-body text-foreground placeholder:text-muted-foreground",
-            "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-            "disabled:cursor-not-allowed disabled:opacity-50 resize-none",
+            "flex min-h-[80px] w-full rounded-lg border border-input bg-background px-3 py-2 text-sm",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             error && "border-destructive",
             className
           )}
@@ -291,39 +267,32 @@ export function Divider({ className, label }: { className?: string; label?: stri
   return (
     <div className={cn("flex items-center gap-3", className)}>
       <hr className="flex-1 border-border" />
-      <span className="text-xs text-muted-foreground font-body">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <hr className="flex-1 border-border" />
     </div>
   );
 }
 
-// ── Alert / Info box ──────────────────────────────────────────────────────────
-const alertVariants = cva("flex items-start gap-3 rounded-lg border p-4 text-sm font-body", {
+// ── Alert ─────────────────────────────────────────────────────────────────────
+const alertVariants = cva("flex items-start gap-3 rounded-lg border p-4 text-sm", {
   variants: {
     variant: {
-      info:    "bg-primary/5 border-primary/20 text-primary",
+      info: "bg-primary/5 border-primary/20 text-primary",
       success: "bg-success/10 border-success/30 text-success",
       warning: "bg-warning/10 border-warning/30 text-warning",
-      error:   "bg-destructive/10 border-destructive/30 text-destructive",
+      error: "bg-destructive/10 border-destructive/30 text-destructive",
     },
   },
   defaultVariants: { variant: "info" },
 });
 
-export interface AlertBoxProps extends VariantProps<typeof alertVariants> {
-  className?: string;
-  icon?: React.ReactNode;
-  title?: string;
-  children: React.ReactNode;
-}
-
-export function AlertBox({ className, variant, icon, title, children }: AlertBoxProps) {
+export function AlertBox({ className, variant, icon, title, children }: any) {
   return (
     <div className={cn(alertVariants({ variant, className }))}>
-      {icon && <span className="mt-0.5 flex-shrink-0">{icon}</span>}
+      {icon && <span>{icon}</span>}
       <div>
         {title && <p className="font-semibold">{title}</p>}
-        <div className="opacity-90">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );

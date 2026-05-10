@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 
 /// OpenZeppelin imports
-import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 /// Internal imports
 import {IAcademicCredential} from "./interfaces/IAcademicCredential.sol";
@@ -18,25 +18,38 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
 
     uint256 private _tokenIdCounter;
 
-    /// Authorized institutions
-    mapping(address => bool) private _authorizedInstitutions;
+    struct Institution {
+        string name;
+        string country;
+        bool isActive;
+    }
+    mapping(address => Institution) private _institutions;
 
-    /// Credential structure
     struct Credential {
-        string ipfsHash; // IPFS CID (for UI & retrieval)
-        bytes32 fileHash; // Hash of actual certificate (for verification)
-        bool revoked; // Revocation status
-        address issuer; // Institution
+        string ipfsHash;
+        bytes32 fileHash;
+        bool revoked;
+        address issuer;
+        string credentialType;
+        uint256 expiresAt;
+        uint256 issuedAt;
     }
 
-    /// tokenId => Credential
+    struct StudentCredential {
+        uint256 tokenId;
+        string ipfsHash;
+        bytes32 fileHash;
+        bool revoked;
+        address issuer; 
+        string credentialType;
+        uint256 expiresAt;
+        uint256 issuedAt;
+    }
+
     mapping(uint256 => Credential) private _credentials;
-
-    /// fileHash => tokenId (unique mapping)
     mapping(bytes32 => uint256) private _hashToTokenId;
-
-    /// student => list of fileHashes (NOT tokenIds → better UX)
     mapping(address => bytes32[]) private _studentCertificates;
+    mapping(address => StudentCredential[]) private _studentWalletCredentials;
 
     /// =============================================================
     ///                         CONSTRUCTOR
@@ -48,82 +61,102 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     ///                   INSTITUTION MANAGEMENT
     /// =============================================================
 
-    /// @notice Authorize an institution
-    function authorizeInstitution(address institution) external onlyOwner {
-        if (_authorizedInstitutions[institution]) {
+    function authorizeInstitution(
+        address institution,
+        string calldata name,
+        string calldata country
+    ) external override onlyOwner {
+        if (_institutions[institution].isActive) {
             revert Errors.AlreadyAuthorized();
         }
 
-        _authorizedInstitutions[institution] = true;
+        _institutions[institution] = Institution({
+            name: name,
+            country: country,
+            isActive: true
+        });
+
         emit InstitutionAuthorized(institution);
     }
 
-    /// @notice Remove institution authorization
-    function removeInstitution(address institution) external onlyOwner {
-        if (!_authorizedInstitutions[institution]) {
+    function getInstitution(
+        address institution
+    ) external view override returns (string memory, string memory, bool) {
+        Institution memory inst = _institutions[institution];
+        return (inst.name, inst.country, inst.isActive);
+    }
+
+    function removeInstitution(address institution) external override onlyOwner {
+        if (!_institutions[institution].isActive) {
             revert Errors.NotAuthorized();
         }
 
-        _authorizedInstitutions[institution] = false;
+        _institutions[institution].isActive = false;
         emit InstitutionRemoved(institution);
     }
 
-    /// @notice Check if institution is authorized
     function isAuthorizedInstitution(
         address institution
-    ) external view returns (bool) {
-        return _authorizedInstitations[institution];
+    ) external view override returns (bool) {
+        return _institutions[institution].isActive;
     }
 
     /// =============================================================
     ///                   CORE FUNCTIONALITY
     /// =============================================================
 
-    /// @notice Issue credential NFT (Soulbound)
-    /// @dev Only authorized institutions can call
     function issueCredential(
         address student,
         string calldata ipfsHash,
-        bytes32 fileHash
-    ) external returns (uint256 tokenId) {
-        /// Validate institution
-        if (!_authorizedInstitutions[msg.sender]) {
+        bytes32 fileHash,
+        string calldata credentialType,
+        uint256 expiresAt
+    ) external override returns (uint256 tokenId) {
+        if (!_institutions[msg.sender].isActive) {
             revert Errors.NotAuthorizedInstitution();
         }
 
-        /// Prevent duplicate certificates
         if (_hashToTokenId[fileHash] != 0) {
             revert Errors.CredentialAlreadyIssued();
         }
 
-        /// Increment tokenId
         tokenId = ++_tokenIdCounter;
 
-        /// Mint soulbound NFT
         _safeMint(student, tokenId);
 
-        /// Store credential
         _credentials[tokenId] = Credential({
             ipfsHash: ipfsHash,
             fileHash: fileHash,
             revoked: false,
-            issuer: msg.sender
+            issuer: msg.sender,
+            credentialType: credentialType,
+            expiresAt: expiresAt,
+            issuedAt: block.timestamp
         });
 
-        /// Indexing
         _hashToTokenId[fileHash] = tokenId;
         _studentCertificates[student].push(fileHash);
+
+        _studentWalletCredentials[student].push(StudentCredential({
+            tokenId: tokenId,
+            ipfsHash: ipfsHash,
+            fileHash: fileHash,
+            revoked: false,
+            issuer: msg.sender,
+            credentialType: credentialType,
+            expiresAt: expiresAt,
+            issuedAt: block.timestamp
+        }));
 
         emit CredentialIssued(tokenId, student, msg.sender, ipfsHash, fileHash);
     }
 
-    /// @notice Revoke credential
-    function revokeCredential(uint256 tokenId) external {
+    function revokeCredential(uint256 tokenId) external override {
         if (_ownerOf(tokenId) == address(0)) {
             revert Errors.TokenDoesNotExist();
         }
 
-        if (!_authorizedInstitutions[msg.sender]) {
+        if (!_institutions[msg.sender].isActive) {
             revert Errors.NotAuthorizedInstitution();
         }
 
@@ -140,78 +173,69 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
     ///                   QUERY FUNCTIONS
     /// =============================================================
 
-    /// @notice Get credential by tokenId
-    function getCredentialByTokenId(
+    function getCredential(
         uint256 tokenId
-    )
-        external
-        view
-        returns (
-            string memory ipfsHash,
-            bytes32 fileHash,
-            address issuer,
-            address student,
-            bool revoked
-        )
-    {
+    ) external view override returns (string memory ipfsHash, bool revoked) {
         if (_ownerOf(tokenId) == address(0)) {
             revert Errors.TokenDoesNotExist();
         }
 
         Credential memory cred = _credentials[tokenId];
-
-        return (
-            cred.ipfsHash,
-            cred.fileHash,
-            cred.issuer,
-            ownerOf(tokenId),
-            cred.revoked
-        );
+        return (cred.ipfsHash, cred.revoked);
     }
 
-    /// @notice Get credential using file hash (MAIN VERIFICATION FUNCTION)
     function getCredentialByHash(
         bytes32 fileHash
     )
         external
         view
+        override
         returns (
             string memory ipfsHash,
             address issuer,
             address student,
-            bool revoked
+            bool revoked, 
+            uint256 expiresAt,
+            uint256 issuedAt
         )
     {
         uint256 tokenId = _hashToTokenId[fileHash];
 
-        if (_ownerOf(tokenId) == address(0)) {
+        if (tokenId == 0) {
             revert Errors.TokenDoesNotExist();
         }
 
         Credential memory cred = _credentials[tokenId];
 
-        return (cred.ipfsHash, cred.issuer, ownerOf(tokenId), cred.revoked);
+        return (cred.ipfsHash, cred.issuer, ownerOf(tokenId), cred.revoked, cred.expiresAt, cred.issuedAt);
     }
 
-    /// @notice Get all certificate hashes of a student
+    function getStudentCertificateDetails (
+        address student
+    ) external view returns (StudentCredential[] memory) {
+        return _studentWalletCredentials[student];
+    }
+
     function getCertificatesOfStudent(
         address student
-    ) external view returns (bytes32[] memory) {
+    ) external view override returns (bytes32[] memory) {
         return _studentCertificates[student];
     }
 
-    /// @notice Get count of certificates
     function getCertificateCount(
         address student
-    ) external view returns (uint256) {
+    ) external view override returns (uint256) {
         return _studentCertificates[student].length;
+    }
+
+    function totalCredentials() external view returns (uint256) {
+        return _tokenIdCounter;
     }
 
     /// =============================================================
     ///                   SOULBOUND LOGIC
     /// =============================================================
 
-    /// @dev Prevent transfers
     function _update(
         address to,
         uint256 tokenId,
@@ -226,7 +250,6 @@ contract AcademicCredential is ERC721, Ownable, IAcademicCredential {
         return from;
     }
 
-    /// @dev Disable approvals
     function approve(address, uint256) public pure override {
         revert Errors.SoulboundToken();
     }

@@ -4,19 +4,39 @@
 import { useState } from "react";
 import { useAccount } from "wagmi";
 import {
-  FilePlus, AlertCircle, CheckCircle2, ExternalLink, Info, Hash
+  FilePlus,
+  AlertCircle,
+  CheckCircle2,
+  ExternalLink,
+  Info,
+  Hash,
 } from "lucide-react";
 import {
-  Button, Card, CardHeader, CardTitle, CardContent,
-  Input, Select, AlertBox, Badge, Divider
+  Button,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  Input,
+  Select,
+  AlertBox,
+  Badge,
+  Divider,
 } from "@/components/ui";
 import { ConnectWalletGate } from "@/components/ConnectWalletGate";
 import { useIssueCredential } from "@/hooks/useIssueCredential";
 import { useInstitution } from "@/hooks/useContractStats";
 import { CREDENTIAL_TYPES } from "@/lib/contract";
-import { isValidAddress, computeCredentialHash, truncateAddress } from "@/lib/utils";
+import {
+  isValidAddress,
+  computeCredentialHash,
+  truncateAddress,
+} from "@/lib/utils";
 
-const CREDENTIAL_OPTIONS = CREDENTIAL_TYPES.map((t) => ({ value: t, label: t }));
+const CREDENTIAL_OPTIONS = CREDENTIAL_TYPES.map((t) => ({
+  value: t,
+  label: t,
+}));
 
 interface FormErrors {
   studentAddress?: string;
@@ -27,6 +47,7 @@ interface FormErrors {
 export default function IssuePage() {
   const { address } = useAccount();
   const { institution } = useInstitution(address);
+  console.log("Institution :  ", institution);
   const { issueCredential, isPending, isConfirming, isSuccess, txHash, error } =
     useIssueCredential();
 
@@ -41,7 +62,8 @@ export default function IssuePage() {
 
   const validate = (): boolean => {
     const errs: FormErrors = {};
-    if (!isValidAddress(form.studentAddress)) errs.studentAddress = "Invalid Ethereum address";
+    if (!isValidAddress(form.studentAddress))
+      errs.studentAddress = "Invalid Ethereum address";
     if (!form.ipfsCID.trim()) errs.ipfsCID = "IPFS CID is required";
     if (!form.credentialType) errs.credentialType = "Select a credential type";
     setErrors(errs);
@@ -49,7 +71,12 @@ export default function IssuePage() {
   };
 
   const handlePreviewHash = () => {
-    if (!isValidAddress(form.studentAddress) || !form.ipfsCID || !institution?.name) return;
+    if (
+      !isValidAddress(form.studentAddress) ||
+      !form.ipfsCID ||
+      !institution?.name
+    )
+      return;
     const hash = computeCredentialHash({
       studentAddress: form.studentAddress,
       credentialType: form.credentialType,
@@ -95,7 +122,8 @@ export default function IssuePage() {
             </h1>
           </div>
           <p className="text-muted-foreground text-sm">
-            Issue a soulbound academic credential NFT to a student&apos;s wallet.
+            Issue a soulbound academic credential NFT to a student&apos;s
+            wallet.
           </p>
         </div>
 
@@ -105,15 +133,26 @@ export default function IssuePage() {
             <div className="flex items-center gap-3">
               <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" />
               <div>
-                <p className="text-sm font-medium text-foreground">{institution.name}</p>
-                <p className="text-xs text-muted-foreground">{institution.country} · Authorized Issuer</p>
+                <p className="text-sm font-medium text-foreground">
+                  {institution.name}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {institution.country} · Authorized Issuer
+                </p>
               </div>
-              <Badge variant="active" className="ml-auto">Active</Badge>
+              <Badge variant="active" className="ml-auto">
+                Active
+              </Badge>
             </div>
           </Card>
         ) : (
-          <AlertBox variant="warning" icon={<AlertCircle className="h-4 w-4" />} title="Not Registered as Issuer">
-            Your wallet is not registered as an authorized institution. Contact the platform admin to get registered.
+          <AlertBox
+            variant="warning"
+            icon={<AlertCircle className="h-4 w-4" />}
+            title="Not Registered as Issuer"
+          >
+            Your wallet is not registered as an authorized institution. Contact
+            the platform admin to get registered.
           </AlertBox>
         )}
 
@@ -128,7 +167,9 @@ export default function IssuePage() {
                 label="Student Wallet Address"
                 placeholder="0x..."
                 value={form.studentAddress}
-                onChange={(e) => setForm((p) => ({ ...p, studentAddress: e.target.value }))}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, studentAddress: e.target.value }))
+                }
                 error={errors.studentAddress}
                 hint="The Ethereum address of the student receiving this credential"
               />
@@ -137,7 +178,9 @@ export default function IssuePage() {
                 label="Credential Type"
                 options={CREDENTIAL_OPTIONS}
                 value={form.credentialType}
-                onChange={(e) => setForm((p) => ({ ...p, credentialType: e.target.value }))}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, credentialType: e.target.value }))
+                }
                 error={errors.credentialType}
               />
 
@@ -145,7 +188,9 @@ export default function IssuePage() {
                 label="IPFS CID"
                 placeholder="Qm... or bafyrei..."
                 value={form.ipfsCID}
-                onChange={(e) => setForm((p) => ({ ...p, ipfsCID: e.target.value }))}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, ipfsCID: e.target.value }))
+                }
                 error={errors.ipfsCID}
                 hint="The IPFS content identifier of the encrypted credential document"
               />
@@ -154,7 +199,9 @@ export default function IssuePage() {
                 label="Expiry Date (optional)"
                 type="date"
                 value={form.expiresAt}
-                onChange={(e) => setForm((p) => ({ ...p, expiresAt: e.target.value }))}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, expiresAt: e.target.value }))
+                }
                 hint="Leave empty for a credential with no expiry"
               />
 
@@ -166,14 +213,22 @@ export default function IssuePage() {
                   size="sm"
                   leftIcon={<Hash className="h-3.5 w-3.5" />}
                   onClick={handlePreviewHash}
-                  disabled={!isValidAddress(form.studentAddress) || !form.ipfsCID || !institution}
+                  disabled={
+                    !isValidAddress(form.studentAddress) ||
+                    !form.ipfsCID ||
+                    !institution
+                  }
                 >
                   Preview Credential Hash
                 </Button>
                 {previewHash && (
                   <div className="rounded-md bg-muted p-3">
-                    <p className="text-xs text-muted-foreground mb-1">Credential Hash (keccak256)</p>
-                    <p className="font-mono text-xs text-foreground break-all">{previewHash}</p>
+                    <p className="text-xs text-muted-foreground mb-1">
+                      Credential Hash (keccak256)
+                    </p>
+                    <p className="font-mono text-xs text-foreground break-all">
+                      {previewHash}
+                    </p>
                   </div>
                 )}
               </div>
@@ -181,20 +236,28 @@ export default function IssuePage() {
               <Divider />
 
               <AlertBox variant="info" icon={<Info className="h-4 w-4" />}>
-                This credential will be permanently recorded on-chain. The student&apos;s
-                wallet address cannot be changed after issuance.
+                This credential will be permanently recorded on-chain. The
+                student&apos;s wallet address cannot be changed after issuance.
               </AlertBox>
 
               {/* Error */}
               {error && (
-                <AlertBox variant="error" icon={<AlertCircle className="h-4 w-4" />} title="Transaction Failed">
+                <AlertBox
+                  variant="error"
+                  icon={<AlertCircle className="h-4 w-4" />}
+                  title="Transaction Failed"
+                >
                   {error.message.slice(0, 200)}
                 </AlertBox>
               )}
 
               {/* Success */}
               {isSuccess && txHash && (
-                <AlertBox variant="success" icon={<CheckCircle2 className="h-4 w-4" />} title="Credential Issued!">
+                <AlertBox
+                  variant="success"
+                  icon={<CheckCircle2 className="h-4 w-4" />}
+                  title="Credential Issued!"
+                >
                   <span>Transaction confirmed. </span>
                   <a
                     href={`https://sepolia.etherscan.io/tx/${txHash}`}
@@ -215,7 +278,11 @@ export default function IssuePage() {
                 disabled={!institution?.isActive}
                 leftIcon={<FilePlus className="h-4 w-4" />}
               >
-                {isPending ? "Confirm in Wallet…" : isConfirming ? "Confirming…" : "Issue Credential"}
+                {isPending
+                  ? "Confirm in Wallet…"
+                  : isConfirming
+                    ? "Confirming…"
+                    : "Issue Credential"}
               </Button>
             </form>
           </CardContent>

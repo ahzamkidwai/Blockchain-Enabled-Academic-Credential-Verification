@@ -9,7 +9,8 @@ export function useVerifyCredential(credentialHash?: `0x${string}`) {
   const { data, isLoading, error, refetch } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: CREDENTIAL_ABI,
-    functionName: "verifyCredentialByHash",
+    // functionName: "verifyCredentialByHash",
+    functionName: "getCredentialByHash",
     args: credentialHash ? [credentialHash] : undefined,
     query: { enabled: !!credentialHash && isValidBytes32(credentialHash) },
   });
