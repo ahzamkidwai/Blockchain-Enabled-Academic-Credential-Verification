@@ -1,57 +1,17 @@
-// app/dashboard/page.tsx
 "use client";
 
 import { useState } from "react";
-import { useAccount } from "wagmi";
-import {
-  LayoutDashboard, GraduationCap, Search, Filter,
-  RefreshCw, Award, CheckCircle2, XCircle, PauseCircle
-} from "lucide-react";
-import { Button, Card, Input, Badge, Select, Skeleton } from "@/components/ui";
-import { CredentialCard, CredentialCardSkeleton } from "@/components/CredentialCard";
+import { LayoutDashboard, GraduationCap, Search, Filter, RefreshCw } from "lucide-react";
+import { Button, Card, Input, Select } from "@/components/ui";
+import { CredentialCard } from "@/components/dashboard/CredentialCard";
 import { ConnectWalletGate } from "@/components/ConnectWalletGate";
 import { useStudentCredentials } from "@/hooks/useStudentCredentials";
 import { useRevokeCredential, useSuspendCredential, useReinstateCredential } from "@/hooks/useRevokeCredential";
 import { useWalletInfo } from "@/hooks/useContractStats";
-import type { Credential } from "@/lib/types";
-import { getStatusLabel, truncateAddress, cn } from "@/lib/utils";
-
-const STATUS_FILTERS = [
-  { value: "all", label: "All Credentials" },
-  { value: "0", label: "Active" },
-  { value: "1", label: "Revoked" },
-  { value: "2", label: "Suspended" },
-];
-
-function DashboardStats({ credentials }: { credentials: Credential[] }) {
-  // const active = credentials.filter((c) => c.status === 0).length;
-  // const revoked = credentials.filter((c) => c.status === 1).length;
-  // const suspended = credentials.filter((c) => c.status === 2).length;
-  const active = credentials.filter((c) => !c.revoked).length;
-  const revoked = credentials.filter((c) => c.revoked).length;
-  const suspended = 0; // not implemented in contract
-
-  const stats = [
-    { icon: Award, label: "Total", value: credentials.length, color: "text-primary" },
-    { icon: CheckCircle2, label: "Active", value: active, color: "text-success" },
-    { icon: XCircle, label: "Revoked", value: revoked, color: "text-destructive" },
-    { icon: PauseCircle, label: "Suspended", value: suspended, color: "text-warning" },
-  ];
-
-  return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      {stats.map(({ icon: Icon, label, value, color }) => (
-        <Card key={label} className="p-4 flex items-center gap-3">
-          <Icon className={cn("h-5 w-5 flex-shrink-0", color)} />
-          <div>
-            <p className="text-xs text-muted-foreground">{label}</p>
-            <p className="font-display text-xl font-semibold text-foreground">{value}</p>
-          </div>
-        </Card>
-      ))}
-    </div>
-  );
-}
+import { truncateAddress } from "@/lib/utils";
+import { STATUS_FILTERS } from "@/constants/dashboard";
+import { DashboardStats } from "@/components/dashboard/DashboardStats";
+import { CredentialCardSkeleton } from "@/components/dashboard/CredentialCard/CredentialCardSkeleton";
 
 export default function DashboardPage() {
   const { address } = useWalletInfo();
@@ -109,7 +69,7 @@ export default function DashboardPage() {
             variant="outline"
             size="sm"
             leftIcon={<RefreshCw className="h-4 w-4" />}
-            // onClick={() => refetch()}
+          // onClick={() => refetch()}
           >
             Refresh
           </Button>
@@ -185,9 +145,11 @@ export default function DashboardPage() {
               const mappedCredential = {
                 ...cred,
                 tokenId: cred.tokenId ?? BigInt(index + 1),
-                status: cred.revoked ? 1 : 0,
+                status: cred.revoked ? 1 : 0, 
                 credentialType: cred.credentialType ?? "Degree",
                 institutionName: cred.institutionName ?? "Unknown Institution",
+                fileHash: cred.fileHash ?? "",
+                issuedAt: cred.issuedAt
               };
 
               return (

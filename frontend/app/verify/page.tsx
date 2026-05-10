@@ -12,7 +12,7 @@ type TabId = "hash" | "file";
 
 const TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
   { id: "hash", label: "Verify by Hash", icon: Hash },
-  { id: "file", label: "Verify by File", icon: Upload },
+  // { id: "file", label: "Verify by File", icon: Upload },
 ];
 
 // ── Root page ─────────────────────────────────────────────────────────────────

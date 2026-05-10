@@ -1,22 +1,40 @@
-// components/Navbar.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Moon, Sun, GraduationCap, LayoutDashboard, ShieldCheck, FilePlus } from "lucide-react";
+import { Moon, Sun, GraduationCap } from "lucide-react";
 import { WalletConnect } from "@/components/WalletConnect";
 import { cn } from "@/lib/utils";
-
-const NAV_LINKS = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/dashboard/issue-certificate", label: "Issue", icon: FilePlus },
-  { href: "/verify", label: "Verify", icon: ShieldCheck },
-];
+import { useContractOwner } from "@/hooks/useContractOwner";
+import { useAccount } from "wagmi";
+import { useInstitution } from "@/hooks/useContractStats";
+import {
+  NAV_LINKS_FOR_ADMIN,
+  NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS,
+  NAV_LINKS_FOR_USERS,
+} from "@/constants/navbarRoutes";
+import { NavLink } from "@/lib/types";
 
 export function Navbar() {
   const pathname = usePathname();
+  const { owner } = useContractOwner();
+  const { address, isConnected } = useAccount();
+  const { institution } = useInstitution(address);
   const { theme, setTheme } = useTheme();
+
+  const isOwner =
+    typeof owner === "string" &&
+    typeof address === "string" &&
+    owner.toLowerCase() === address.toLowerCase();
+
+  const isAuthorizedInstitution = !!institution;
+
+  const navLinks: NavLink[] = isOwner
+    ? NAV_LINKS_FOR_ADMIN
+    : isAuthorizedInstitution
+      ? NAV_LINKS_FOR_AUTHORIZED_INSTITUTIONS
+      : NAV_LINKS_FOR_USERS;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-md">
@@ -36,9 +54,9 @@ export function Navbar() {
           </div>
         </Link>
 
-        {/* Nav links */}
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ href, label, icon: Icon }) => (
+          {navLinks.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}
               href={href}
@@ -46,7 +64,7 @@ export function Navbar() {
                 "flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 pathname === href || pathname.startsWith(href + "/")
                   ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary",
               )}
             >
               <Icon className="h-4 w-4" />
@@ -71,17 +89,17 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile Nav */}
       <div className="flex md:hidden border-t border-border bg-card/50">
-        {NAV_LINKS.map(({ href, label, icon: Icon }) => (
+        {navLinks.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
             href={href}
             className={cn(
               "flex flex-1 flex-col items-center gap-1 px-2 py-2 text-[10px] font-medium transition-colors",
-              pathname === href
+              pathname === href || pathname.startsWith(href + "/")
                 ? "text-primary"
-                : "text-muted-foreground"
+                : "text-muted-foreground",
             )}
           >
             <Icon className="h-4 w-4" />

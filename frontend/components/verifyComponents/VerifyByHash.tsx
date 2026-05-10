@@ -22,7 +22,7 @@ import {
   XCircle,
 } from "lucide-react";
 import VerdictBanner from "./VerdictBanner";
-import { CredentialCard } from "../CredentialCard";
+import { CredentialCard } from "../dashboard/CredentialCard";
 import type { Credential } from "@/lib/types";
 
 type ContractResult = [
