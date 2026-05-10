@@ -8,34 +8,48 @@ import {Errors} from "../src/libraries/Errors.sol";
 contract AcademicCredentialTest is Test {
     AcademicCredential credential;
 
-    address owner = address(this);
     address institution = address(1);
     address student = address(2);
+
+    bytes32 fileHash = keccak256("file");
 
     function setUp() public {
         credential = new AcademicCredential();
     }
 
     function testAuthorizeInstitution() public {
-        credential.authorizeInstitution(institution);
+        credential.authorizeInstitution(institution, "ABC University", "India");
+
         bool authorized = credential.isAuthorizedInstitution(institution);
         assertTrue(authorized);
     }
 
     function testIssueCredential() public {
-        credential.authorizeInstitution(institution);
+        credential.authorizeInstitution(institution, "ABC University", "India");
 
         vm.prank(institution);
-        uint256 tokenId = credential.issueCredential(student, "ipfsHash");
+        uint256 tokenId = credential.issueCredential(
+            student,
+            "ipfsHash",
+            fileHash,
+            "Degree",
+            block.timestamp + 1 days
+        );
 
         assertEq(credential.ownerOf(tokenId), student);
     }
 
     function testSoulboundTransferFails() public {
-        credential.authorizeInstitution(institution);
+        credential.authorizeInstitution(institution, "ABC University", "India");
 
         vm.prank(institution);
-        uint256 tokenId = credential.issueCredential(student, "ipfsHash");
+        uint256 tokenId = credential.issueCredential(
+            student,
+            "ipfsHash",
+            fileHash,
+            "Degree",
+            block.timestamp + 1 days
+        );
 
         vm.prank(student);
         vm.expectRevert(abi.encodeWithSelector(Errors.SoulboundToken.selector));
@@ -43,10 +57,16 @@ contract AcademicCredentialTest is Test {
     }
 
     function testRevokeCredential() public {
-        credential.authorizeInstitution(institution);
+        credential.authorizeInstitution(institution, "ABC University", "India");
 
         vm.prank(institution);
-        uint256 tokenId = credential.issueCredential(student, "ipfsHash");
+        uint256 tokenId = credential.issueCredential(
+            student,
+            "ipfsHash",
+            fileHash,
+            "Degree",
+            block.timestamp + 1 days
+        );
 
         vm.prank(institution);
         credential.revokeCredential(tokenId);
@@ -57,7 +77,17 @@ contract AcademicCredentialTest is Test {
 
     function testUnauthorizedIssuanceFails() public {
         vm.prank(student);
-        vm.expectRevert(abi.encodeWithSelector(Errors.NotAuthorizedInstitution.selector));
-        credential.issueCredential(student, "ipfsHash");
+
+        vm.expectRevert(
+            abi.encodeWithSelector(Errors.NotAuthorizedInstitution.selector)
+        );
+
+        credential.issueCredential(
+            student,
+            "ipfsHash",
+            fileHash,
+            "Degree",
+            block.timestamp + 1 days
+        );
     }
 }

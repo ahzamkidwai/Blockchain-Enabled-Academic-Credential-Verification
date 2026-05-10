@@ -2,10 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { useConnect, useDisconnect } from "wagmi";
-import { Wallet, ChevronDown, LogOut, Copy, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  Wallet,
+  ChevronDown,
+  LogOut,
+  Copy,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import { Button, Badge } from "@/components/ui";
 import { useWalletInfo } from "@/hooks/useContractStats";
 import { truncateAddress, copyToClipboard, cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 export function WalletConnect({ className }: { className?: string }) {
   const { address, isConnected, isConnecting, chainName, balance } =
@@ -13,6 +21,7 @@ export function WalletConnect({ className }: { className?: string }) {
 
   const { connect, connectors, error } = useConnect();
   const { disconnect } = useDisconnect();
+  const router = useRouter();
 
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -22,6 +31,12 @@ export function WalletConnect({ className }: { className?: string }) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (isConnected && address) {
+      router.push("/");
+    }
+  }, [isConnected, address, router]);
 
   const handleCopy = async () => {
     if (!address) return;
@@ -54,13 +69,11 @@ export function WalletConnect({ className }: { className?: string }) {
           className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
         >
           <span className="h-2 w-2 rounded-full bg-success animate-pulse-slow" />
-          <span className="font-mono text-xs">
-            {truncateAddress(address)}
-          </span>
+          <span className="font-mono text-xs">{truncateAddress(address)}</span>
           <ChevronDown
             className={cn(
               "h-3.5 w-3.5 text-muted-foreground transition-transform",
-              dropdownOpen && "rotate-180"
+              dropdownOpen && "rotate-180",
             )}
           />
         </button>
