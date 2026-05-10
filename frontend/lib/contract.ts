@@ -956,7 +956,7 @@ export const CHAIN_NAMES: Record<number, string> = {
   11155111: "Sepolia",
   137: "Polygon",
   80001: "Mumbai",
-  31337: "Hardhat Local",
+  31337: "Anvil Local",
 };
 
 // Credential type options
