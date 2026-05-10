@@ -1,9 +1,8 @@
-// components/StatsBar.tsx
 "use client";
 
 import { Award, ShieldCheck, Building2, TrendingUp } from "lucide-react";
 import { Card } from "@/components/ui";
-import { useTotalCredentials } from "@/hooks/useContractStats";
+// import { useTotalCredentials } from "@/hooks/useContractStats";
 import { cn } from "@/lib/utils";
 
 interface StatItemProps {
@@ -22,7 +21,9 @@ function StatItem({ icon, label, value, trend, className }: StatItemProps) {
       </div>
       <div className="min-w-0">
         <p className="text-xs text-muted-foreground font-body">{label}</p>
-        <p className="font-display text-xl font-semibold text-foreground">{value}</p>
+        <p className="font-display text-xl font-semibold text-foreground">
+          {value}
+        </p>
         {trend && <p className="text-xs text-success">{trend}</p>}
       </div>
     </Card>
@@ -30,16 +31,16 @@ function StatItem({ icon, label, value, trend, className }: StatItemProps) {
 }
 
 export function StatsBar() {
-  const { total, isLoading } = useTotalCredentials();
+  // const { total, isLoading } = useTotalCredentials();
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <StatItem
+      {/* <StatItem
         icon={<Award className="h-5 w-5" />}
         label="Total Credentials"
         value={isLoading ? "—" : total?.toString() ?? "0"}
         trend="On-chain"
-      />
+      /> */}
       <StatItem
         icon={<ShieldCheck className="h-5 w-5" />}
         label="Verification Type"

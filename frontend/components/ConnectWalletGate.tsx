@@ -1,4 +1,3 @@
-// components/ConnectWalletGate.tsx
 "use client";
 
 import { Wallet, ShieldAlert } from "lucide-react";
@@ -6,6 +5,7 @@ import { WalletConnect } from "@/components/WalletConnect";
 import { useWalletInfo } from "@/hooks/useContractStats";
 import { SUPPORTED_CHAINS } from "@/lib/wagmi";
 import { AlertBox } from "@/components/ui";
+import { useEffect, useState } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -14,6 +14,17 @@ interface Props {
 
 export function ConnectWalletGate({ children }: Props) {
   const { isConnected, chainId } = useWalletInfo();
+
+  // ✅ ADD THIS
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ PREVENT HYDRATION MISMATCH
+  if (!mounted) {
+    return null; // or loader if you want
+  }
 
   if (!isConnected) {
     return (
@@ -26,7 +37,8 @@ export function ConnectWalletGate({ children }: Props) {
             Connect Your Wallet
           </h2>
           <p className="text-sm text-muted-foreground">
-            You need a Web3 wallet to access this page. Connect MetaMask or another supported wallet to continue.
+            You need a Web3 wallet to access this page. Connect MetaMask or
+            another supported wallet to continue.
           </p>
         </div>
         <WalletConnect />
@@ -34,7 +46,8 @@ export function ConnectWalletGate({ children }: Props) {
     );
   }
 
-  const supportedChainIds = SUPPORTED_CHAINS.map((c) => c.id);
+  const supportedChainIds: number[] = SUPPORTED_CHAINS.map((c) => c.id);
+
   if (chainId && !supportedChainIds.includes(chainId)) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 text-center px-4">
@@ -46,7 +59,7 @@ export function ConnectWalletGate({ children }: Props) {
             Wrong Network
           </h2>
           <AlertBox variant="warning" title="Unsupported Network">
-            Please switch to Sepolia Testnet, Polygon, or Polygon Amoy in your wallet.
+            Please switch to Anvil (Local), Sepolia, Polygon, or Polygon Amoy.
           </AlertBox>
         </div>
       </div>
